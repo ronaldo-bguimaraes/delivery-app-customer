@@ -1,4 +1,5 @@
 import 'package:delivery_app_customer/screens/home/home.dart';
+import 'package:delivery_app_customer/screens/inicio/product_list.dart';
 import 'package:delivery_app_customer/screens/perfil/cartao.dart';
 import 'package:delivery_app_customer/screens/perfil/pagamento.dart';
 import 'package:delivery_app_customer/screens/user/user_sign_email.dart';
@@ -24,6 +25,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: UserSignIn.routeName,
       routes: {
+        ProductList.routeName: (context) => const ProductList(),
         UserSignIn.routeName: (context) => const UserSignIn(),
         UserSignInEmail.routeName: (context) => const UserSignInEmail(),
         UserSignUp.routeName: (context) => const UserSignUp(),

@@ -1,12 +1,12 @@
-import 'package:delivery_app_customer/screens/inicio/inicio_item.dart';
+import 'package:delivery_app_customer/screens/inicio/fornecedor_item.dart';
 import 'package:flutter/material.dart';
 
 class FornecedoresList extends StatelessWidget {
-  final List<InicioItem> _list;
+  final List<FornecedorItem> _list;
 
   const FornecedoresList({
     Key? key,
-    required List<InicioItem> list,
+    required List<FornecedorItem> list,
   })  : _list = list,
         super(key: key);
 

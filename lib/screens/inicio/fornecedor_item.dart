@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class InicioItem {
+class FornecedorItem {
   final String title;
   final String categoria;
   final double distancia;
@@ -9,7 +9,7 @@ class InicioItem {
   final ImageProvider<Object>? image;
   final void Function(BuildContext) event;
 
-  const InicioItem({
+  const FornecedorItem({
     required this.title,
     required this.categoria,
     required this.distancia,

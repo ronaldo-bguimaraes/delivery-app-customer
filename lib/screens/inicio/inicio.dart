@@ -1,5 +1,5 @@
 import 'package:delivery_app_customer/screens/inicio/fornecedores_list.dart';
-import 'package:delivery_app_customer/screens/inicio/inicio_item.dart';
+import 'package:delivery_app_customer/screens/inicio/fornecedor_item.dart';
 import 'package:flutter/material.dart';
 
 class Inicio extends StatefulWidget {
@@ -10,10 +10,10 @@ class Inicio extends StatefulWidget {
 }
 
 class _InicioState extends State<Inicio> {
-  final List<String> _categorias = ['Todos', 'Comidas', 'Bebidas'];
+  final List<String> _categorias = ['Fornecedores', 'Produto'];
 
-  final List<InicioItem> _todos = [
-    InicioItem(
+  final List<FornecedorItem> _todos = [
+    FornecedorItem(
       title: 'CJ Lanches',
       categoria: 'Lanches',
       distancia: 5.5,
@@ -24,7 +24,7 @@ class _InicioState extends State<Inicio> {
         //
       },
     ),
-    InicioItem(
+    FornecedorItem(
       title: 'Faveri Carnes e Cia',
       categoria: 'Carnes',
       distancia: 7.2,
