@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:delivery_app_customer/repository/settings.dart';
+import 'package:delivery_app_customer/repository/appsettings.dart';
 import 'package:delivery_app_customer/service/authentication_service.dart';
 import 'package:http/http.dart' as http;
 import 'package:delivery_app_customer/dto/cliente.dart';
 import 'package:delivery_app_customer/repository/interface/repository.dart';
 
 class ClienteFirebaseRepository extends IRepository<Cliente> {
-  final String _path = '${Settings.path}/clientes';
+  final String _path = '${AppSettings.path}/clientes';
 
   String? get _currentToken {
     return AuthenticationService.currentToken;
