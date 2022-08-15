@@ -1,5 +1,5 @@
+import 'package:delivery_app_customer/provider/provider_dependencies.dart';
 import 'package:delivery_app_customer/screens/home/home.dart';
-import 'package:delivery_app_customer/screens/inicio/product_list.dart';
 import 'package:delivery_app_customer/screens/perfil/cartao.dart';
 import 'package:delivery_app_customer/screens/perfil/pagamento.dart';
 import 'package:delivery_app_customer/screens/user/user_sign_email.dart';
@@ -9,12 +9,14 @@ import 'package:flutter/material.dart';
 
 void main() async {
   runApp(
-    const App(),
+    const ProviderDependencies(
+      child: Main(),
+    ),
   );
 }
 
-class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+class Main extends StatelessWidget {
+  const Main({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,7 +27,6 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: UserSignIn.routeName,
       routes: {
-        ProductList.routeName: (context) => const ProductList(),
         UserSignIn.routeName: (context) => const UserSignIn(),
         UserSignInEmail.routeName: (context) => const UserSignInEmail(),
         UserSignUp.routeName: (context) => const UserSignUp(),

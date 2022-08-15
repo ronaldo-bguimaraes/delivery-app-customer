@@ -1,12 +1,11 @@
 import 'package:delivery_app_customer/dto/usuario.dart';
-import 'package:delivery_app_customer/repository/interface/repository.dart';
-import 'package:delivery_app_customer/repository/usuario_repository.dart';
 import 'package:delivery_app_customer/screens/component/full_scroll.dart';
 import 'package:delivery_app_customer/screens/home/home.dart';
 import 'package:delivery_app_customer/screens/user/user_sign_up.dart';
-import 'package:delivery_app_customer/service/authentication_service.dart';
+import 'package:delivery_app_customer/service/interface/i_service_auth.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class UserSignInEmail extends StatefulWidget {
   static const String routeName = '/user-sign-in-email';
@@ -21,17 +20,6 @@ class _UserSignInEmailState extends State<UserSignInEmail> {
   final _formKey = GlobalKey<FormState>();
 
   Usuario _usuario = Usuario();
-
-  late final IRepository<Usuario> _usuarioRepository;
-  late final AuthenticationService _auth;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _usuarioRepository = UsuarioFirebaseRepository();
-    _auth = AuthenticationService(_usuarioRepository);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +103,7 @@ class _UserSignInEmailState extends State<UserSignInEmail> {
                     }
                     if (state != null && state.validate()) {
                       try {
-                        _usuario = await _auth.signIn(_usuario);
+                        _usuario = await context.read<IServiceAuth>().signIn(_usuario);
                         Navigator.of(context).pushNamedAndRemoveUntil(
                           Home.routeName,
                           (route) => false,

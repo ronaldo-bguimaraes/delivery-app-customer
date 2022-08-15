@@ -1,19 +1,16 @@
 import 'package:delivery_app_customer/dto/cliente.dart';
-import 'package:delivery_app_customer/dto/usuario.dart';
-import 'package:delivery_app_customer/repository/cliente_repository.dart';
-import 'package:delivery_app_customer/repository/interface/repository.dart';
-import 'package:delivery_app_customer/repository/usuario_repository.dart';
 import 'package:delivery_app_customer/screens/component/full_scroll.dart';
 import 'package:delivery_app_customer/screens/home/home.dart';
 import 'package:delivery_app_customer/screens/mask/cpf_mask.dart';
 import 'package:delivery_app_customer/screens/mask/date_mask.dart';
 import 'package:delivery_app_customer/screens/mask/phone_mask.dart';
-import 'package:delivery_app_customer/service/authentication_service.dart';
-import 'package:delivery_app_customer/service/cliente_service.dart';
+import 'package:delivery_app_customer/service/interface/i_service_auth.dart';
+import 'package:delivery_app_customer/service/interface/i_service_cliente_auth.dart';
 import 'package:easy_mask/easy_mask.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class UserSignUp extends StatefulWidget {
   static const String routeName = '/user-sign-up';
@@ -31,17 +28,9 @@ class _UserSignUpState extends State<UserSignUp> {
   late final TextInputMask _phoneMask;
   late final TextInputMask _dateMask;
 
-  late final IRepository<Usuario> _usuarioRepository;
-  late final IRepository<Cliente> _clienteRepository;
-
-  late final ClienteService _clienteService;
-
-  late final AuthenticationService _auth;
-
   final _dateFormat = DateFormat('dd/MM/yyyy');
 
   Cliente _cliente = Cliente();
-  Usuario _usuario = Usuario();
 
   @override
   void initState() {
@@ -49,13 +38,6 @@ class _UserSignUpState extends State<UserSignUp> {
     _cpfMask = getCpfMask();
     _phoneMask = getPhoneMask();
     _dateMask = getDateMask();
-    //
-    _usuarioRepository = UsuarioFirebaseRepository();
-    _clienteRepository = ClienteFirebaseRepository();
-    //
-    _clienteService = ClienteService(_clienteRepository);
-    //
-    _auth = AuthenticationService(_usuarioRepository);
   }
 
   @override
@@ -74,9 +56,9 @@ class _UserSignUpState extends State<UserSignUp> {
                 child: Column(
                   children: [
                     TextFormField(
-                      initialValue: _usuario.nome,
+                      initialValue: _cliente.usuario.nome,
                       onSaved: (value) {
-                        _usuario.nome = value!;
+                        _cliente.usuario.nome = value!;
                       },
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
@@ -120,9 +102,9 @@ class _UserSignUpState extends State<UserSignUp> {
                       height: 15,
                     ),
                     TextFormField(
-                      initialValue: _usuario.telefone,
+                      initialValue: _cliente.usuario.telefone,
                       onSaved: (value) {
-                        _usuario.telefone = value!.replaceAll(RegExp(r'\D'), '');
+                        _cliente.usuario.telefone = value!.replaceAll(RegExp(r'\D'), '');
                       },
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
@@ -146,9 +128,9 @@ class _UserSignUpState extends State<UserSignUp> {
                       height: 15,
                     ),
                     TextFormField(
-                      initialValue: _usuario.email,
+                      initialValue: _cliente.usuario.email,
                       onSaved: (value) {
-                        _usuario.email = value!;
+                        _cliente.usuario.email = value!;
                       },
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
@@ -195,9 +177,9 @@ class _UserSignUpState extends State<UserSignUp> {
                       height: 15,
                     ),
                     TextFormField(
-                      initialValue: _usuario.senha,
+                      initialValue: _cliente.usuario.senha,
                       onSaved: (value) {
-                        _usuario.senha = value!;
+                        _cliente.usuario.senha = value!;
                       },
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
@@ -231,7 +213,7 @@ class _UserSignUpState extends State<UserSignUp> {
                         if (value.length < 8) {
                           return 'A senha deve ter pelo menos 8 caracteres';
                         }
-                        if (value != _usuario.senha) {
+                        if (value != _cliente.usuario.senha) {
                           return 'As senhas não correspondem';
                         }
                         return null;
@@ -249,9 +231,9 @@ class _UserSignUpState extends State<UserSignUp> {
                         }
                         if (state != null && state.validate()) {
                           try {
-                            _usuario = await _auth.signUp(_usuario);
-                            _cliente.usuarioId = _usuario.id;
-                            _cliente = await _clienteService.add(_cliente);
+                            _cliente.usuario = await context.read<IServiceAuth>().signUp(_cliente.usuario);
+                            // create cliente profile
+                            _cliente = await context.read<IServiceClienteAuth>().save(_cliente);
                             //
                             Navigator.of(context).pushNamedAndRemoveUntil(
                               Home.routeName,

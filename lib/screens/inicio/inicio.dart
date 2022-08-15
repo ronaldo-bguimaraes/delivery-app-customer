@@ -1,5 +1,7 @@
 import 'package:delivery_app_customer/screens/inicio/fornecedores_list.dart';
 import 'package:delivery_app_customer/screens/inicio/fornecedor_item.dart';
+import 'package:delivery_app_customer/screens/inicio/product_item_list.dart';
+import 'package:delivery_app_customer/screens/inicio/product_list.dart';
 import 'package:flutter/material.dart';
 
 class Inicio extends StatefulWidget {
@@ -37,6 +39,29 @@ class _InicioState extends State<Inicio> {
     ),
   ];
 
+  final List<ProductItemList> _myList = [
+    ProductItemList(
+      descricao: 'Baguncinha',
+      valor: 15,
+      categoria: 'Lanches',
+      fornecedor: 'Bellatos',
+      ingredientes: 'Pão, hamburguer, alface, tomate, ovo, milho, salsicha',
+      disponivel: true,
+      image: const AssetImage('./assets/images/baguncinha.png'),
+      event: (context) {},
+    ),
+    ProductItemList(
+      descricao: 'X-Tudo',
+      valor: 25,
+      categoria: 'Lanches',
+      fornecedor: 'CJ Lanches',
+      ingredientes: 'Pão, hamburguer, alface, tomate, ovo, milho, salsicha, bacon, cheddar',
+      disponivel: true,
+      image: const AssetImage('./assets/images/x-tudo.png'),
+      event: (context) {},
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -49,8 +74,7 @@ class _InicioState extends State<Inicio> {
         ),
         body: TabBarView(children: [
           FornecedoresList(list: _todos),
-          FornecedoresList(list: _todos),
-          FornecedoresList(list: _todos),
+          ProductList(list: _myList),
         ]),
       ),
       length: _categorias.length,

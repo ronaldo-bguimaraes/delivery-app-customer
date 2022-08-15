@@ -6,7 +6,7 @@ class FornecedorItem {
   final double distancia;
   final int tempoEntrega;
   final double frete;
-  final ImageProvider<Object>? image;
+  final ImageProvider<Object> image;
   final void Function(BuildContext) event;
 
   const FornecedorItem({

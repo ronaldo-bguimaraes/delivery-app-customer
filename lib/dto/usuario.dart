@@ -1,3 +1,4 @@
+import 'package:delivery_app_customer/dto/cliente.dart';
 import 'package:delivery_app_customer/dto/inteface/i_entity.dart';
 
 class Usuario extends IEntity {
@@ -9,6 +10,7 @@ class Usuario extends IEntity {
   String? senha;
   DateTime? dataCadastro;
   String? token;
+  Cliente? cliente;
 
   Usuario({
     this.id,
@@ -18,28 +20,6 @@ class Usuario extends IEntity {
     this.senha = '',
     this.dataCadastro,
     this.token,
+    this.cliente,
   });
-
-  @override
-  Map<String, dynamic> toMap() {
-    final map = {
-      'id': id?.toInt(),
-      'nome': nome,
-      'telefone': telefone,
-      'email': email,
-      'senha': senha,
-      'dataCadastro': dataCadastro?.toIso8601String(),
-      'token': token,
-    };
-    map.removeWhere((key, value) => value == null);
-    return map;
-  }
-
-  Usuario.fromMap(Map<String, dynamic> map)
-      : id = map['id']?.toInt(),
-        nome = map['nome'],
-        telefone = map['telefone'],
-        email = map['email'],
-        dataCadastro = DateTime.parse(map['dataCadastro']),
-        token = map['token'];
 }
