@@ -1,13 +1,14 @@
 import 'package:delivery_app_customer/dto/cliente.dart';
 import 'package:delivery_app_customer/dto/usuario.dart';
-import 'package:delivery_app_customer/repository/cliente_repository.dart';
 import 'package:delivery_app_customer/screens/perfil/endereco_list.dart';
 import 'package:delivery_app_customer/screens/perfil/list_item.dart';
 import 'package:delivery_app_customer/screens/perfil/meus_dados.dart';
 import 'package:delivery_app_customer/screens/perfil/pagamento.dart';
 import 'package:delivery_app_customer/screens/user/user_sign_in.dart';
-import 'package:delivery_app_customer/service/authentication_service.dart';
+import 'package:delivery_app_customer/service/interface/i_service_auth.dart';
+import 'package:delivery_app_customer/service/interface/i_service_cliente_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Perfil extends StatefulWidget {
   const Perfil({Key? key}) : super(key: key);
@@ -23,18 +24,18 @@ class _PerfilState extends State<Perfil> {
       subTitle: 'Dados da minha conta',
       icon: Icons.description,
       event: (context) async {
-        final Usuario? usuario = AuthenticationService.currentUser;
-        if(usuario == null) {
+        final Usuario? usuario = context.read<IServiceAuth>().currentUser;
+        if (usuario == null) {
           throw Exception('Usuário não está logado');
         }
-        final clienteRepository = ClienteFirebaseRepository();
-        Cliente? cliente = await clienteRepository.getByUsuarioId(usuario.id!);
-        if(cliente == null) {
+        Cliente? cliente = await context.read<IServiceClienteAuth>().getByUsuario(usuario);
+        if (cliente == null) {
           throw Exception('Cliente não encontrado');
         }
+        cliente.usuario = usuario;
         Navigator.of(context).push(
           MaterialPageRoute(builder: (context) {
-            return MeusDados(usuario: usuario, cliente: cliente);
+            return MeusDados(cliente: cliente);
           }),
         );
       },
@@ -52,8 +53,8 @@ class _PerfilState extends State<Perfil> {
       subTitle: 'Meus endereços para entrega',
       icon: Icons.location_pin,
       event: (context) async {
-        final Usuario? usuario = AuthenticationService.currentUser;
-        if(usuario == null) {
+        final Usuario? usuario = context.read<IServiceAuth>().currentUser;
+        if (usuario == null) {
           throw Exception('Usuário não está logado');
         }
         // busca de endereços não está funcionando
@@ -84,7 +85,7 @@ class _PerfilState extends State<Perfil> {
   @override
   void initState() {
     super.initState();
-    _usuario = AuthenticationService.currentUser;
+    _usuario = context.read<IServiceAuth>().currentUser;
   }
 
   @override

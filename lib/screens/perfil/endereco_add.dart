@@ -1,12 +1,11 @@
 import 'package:delivery_app_customer/dto/endereco.dart';
 import 'package:delivery_app_customer/dto/usuario.dart';
-import 'package:delivery_app_customer/repository/endereco_repository.dart';
-import 'package:delivery_app_customer/repository/interface/repository.dart';
 import 'package:delivery_app_customer/screens/component/full_scroll.dart';
 import 'package:delivery_app_customer/screens/home/home.dart';
-import 'package:delivery_app_customer/service/endereco_service.dart';
+import 'package:delivery_app_customer/service/interface/i_service_endereco_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_place/google_place.dart';
+import 'package:provider/provider.dart';
 
 class EnderecoAdd extends StatefulWidget {
   final Usuario usuario;
@@ -28,20 +27,11 @@ class _EnderecoAddState extends State<EnderecoAdd> {
 
   bool enabled = true;
 
-  late final IRepository<Endereco> _enderecoRepository;
-
-  late final EnderecoService _enderecoService;
-
   @override
   void initState() {
     super.initState();
     googlePlace = GooglePlace('AIzaSyCPUbNceTz40d8tlp66hega2LGEJeCn4v0');
     _descricaoController.text = _endereco.descricao;
-
-    _enderecoRepository = EnderecoFirebaseRepository();
-    //
-    _enderecoService = EnderecoService(_enderecoRepository);
-    //
     _endereco.usuarioId = widget.usuario.id;
   }
 
@@ -211,7 +201,7 @@ class _EnderecoAddState extends State<EnderecoAdd> {
                         }
                         if (state != null && state.validate()) {
                           try {
-                            await _enderecoService.add(_endereco);
+                            context.read<IServiceEnderecoAuth>().save(_endereco);
                             //
                             Navigator.of(context).pushNamedAndRemoveUntil(
                               Home.routeName,

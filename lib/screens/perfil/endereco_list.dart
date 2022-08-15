@@ -1,8 +1,9 @@
 import 'package:delivery_app_customer/dto/endereco.dart';
 import 'package:delivery_app_customer/dto/usuario.dart';
 import 'package:delivery_app_customer/screens/perfil/endereco_add.dart';
-import 'package:delivery_app_customer/service/authentication_service.dart';
+import 'package:delivery_app_customer/service/interface/i_service_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class EnderecoList extends StatefulWidget {
   final Usuario usuario;
@@ -23,7 +24,7 @@ class _EnderecoListState extends State<EnderecoList> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          final Usuario? usuario = AuthenticationService.currentUser;
+          final Usuario? usuario = context.read<IServiceAuth>().currentUser;
           if (usuario == null) {
             throw Exception('Usuário não está logado');
           }

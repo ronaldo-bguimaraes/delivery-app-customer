@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-class ProductItemList{
+class ProductItemList {
   final String descricao;
   final double valor;
   final String fornecedor;
@@ -18,6 +18,6 @@ class ProductItemList{
     required this.disponivel,
     required this.categoria,
     required this.image,
-    required this.event
+    required this.event,
   });
 }
