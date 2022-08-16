@@ -1,5 +1,5 @@
 import 'package:delivery_app_customer/dto/usuario.dart';
-import 'package:delivery_app_customer/repository/interface/i_repository_usuario_base.dart';
+import 'package:delivery_app_customer/repository/interface/i_repository_usuario_anon.dart';
 import 'package:delivery_app_customer/service/interface/i_service_usuario_anon.dart';
 import 'package:delivery_app_customer/service/service_entity_anon.dart';
 
