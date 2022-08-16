@@ -1,5 +1,5 @@
 import 'package:delivery_app_customer/dto/usuario.dart';
-import 'package:delivery_app_customer/repository/interface/i_repository_usuario_base.dart';
+import 'package:delivery_app_customer/repository/interface/i_repository_usuario_anon.dart';
 import 'package:delivery_app_customer/service/interface/i_service_auth.dart';
 
 class ServiceAuth<T extends Usuario, U extends Usuario> implements IServiceAuth<T> {
@@ -32,7 +32,7 @@ class ServiceAuth<T extends Usuario, U extends Usuario> implements IServiceAuth<
 
   @override
   Future<T> signUp(T usuario) async {
-    final user = await repositoryUsuario.save(usuario);
+    final user = await repositoryUsuario.signUp(usuario);
     return await signIn(user);
   }
 }

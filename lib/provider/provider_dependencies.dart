@@ -7,7 +7,7 @@ import 'package:delivery_app_customer/mapper/mapper_usuario.dart';
 import 'package:delivery_app_customer/repository/interface/i_repository_cliente_auth.dart';
 import 'package:delivery_app_customer/repository/interface/i_repository_endereco_auth.dart';
 import 'package:delivery_app_customer/repository/interface/i_repository_usuario_auth.dart';
-import 'package:delivery_app_customer/repository/interface/i_repository_usuario_base.dart';
+import 'package:delivery_app_customer/repository/interface/i_repository_usuario_anon.dart';
 import 'package:delivery_app_customer/repository/repository_cliente_auth.dart';
 import 'package:delivery_app_customer/repository/repository_endereco_auth.dart';
 import 'package:delivery_app_customer/repository/repository_usuario_auth.dart';
