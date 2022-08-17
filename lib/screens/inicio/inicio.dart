@@ -4,6 +4,8 @@ import 'package:delivery_app_customer/screens/inicio/product_item_list.dart';
 import 'package:delivery_app_customer/screens/inicio/product_list.dart';
 import 'package:flutter/material.dart';
 
+import '../cart/cart_button.dart';
+
 class Inicio extends StatefulWidget {
   const Inicio({Key? key}) : super(key: key);
 
@@ -66,6 +68,7 @@ class _InicioState extends State<Inicio> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       child: Scaffold(
+        floatingActionButton: const CartButton(),
         appBar: AppBar(
           title: const Text('Fornecedores'),
           bottom: TabBar(

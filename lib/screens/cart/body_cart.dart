@@ -1,16 +1,17 @@
+import 'package:delivery_app_customer/screens/cart/cart_item_list.dart';
 import 'package:delivery_app_customer/screens/inicio/product_item_list.dart';
 import 'package:flutter/material.dart';
 
-class ProductList extends StatefulWidget {
+class BodyCart extends StatefulWidget {
   final List<CartItemList> list;
 
-  const ProductList({Key? key, required this.list}) : super(key: key);
+  const BodyCart({Key? key, required this.list}) : super(key: key);
 
   @override
-  State<ProductList> createState() => _ProductListState();
+  State<BodyCart> createState() => _BodyCartState();
 }
 
-class _ProductListState extends State<ProductList> {
+class _BodyCartState extends State<BodyCart> {
   @override
   Widget build(BuildContext context) {
     return Padding(
