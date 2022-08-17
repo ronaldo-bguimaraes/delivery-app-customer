@@ -13,12 +13,14 @@ import 'package:delivery_app_customer/repository/repository_endereco_auth.dart';
 import 'package:delivery_app_customer/repository/repository_usuario_auth.dart';
 import 'package:delivery_app_customer/repository/repository_usuario_anon.dart';
 import 'package:delivery_app_customer/service/interface/i_service_auth.dart';
+import 'package:delivery_app_customer/service/interface/i_service_cart.dart';
 import 'package:delivery_app_customer/service/interface/i_service_cliente_auth.dart';
 import 'package:delivery_app_customer/config/interface/i_config.dart';
 import 'package:delivery_app_customer/service/interface/i_service_endereco_auth.dart';
 import 'package:delivery_app_customer/service/interface/i_service_usuario_auth.dart';
 import 'package:delivery_app_customer/service/interface/i_service_usuario_anon.dart';
 import 'package:delivery_app_customer/service/service_auth.dart';
+import 'package:delivery_app_customer/service/service_cart.dart';
 import 'package:delivery_app_customer/service/service_cliente_auth.dart';
 import 'package:delivery_app_customer/config/config.dart';
 import 'package:delivery_app_customer/service/service_endereco_auth.dart';
@@ -115,6 +117,10 @@ class ProviderDependencies extends StatelessWidget {
           create: (ctx) => ServiceEnderecoAuth(
             ctx.read<IRepositoryEnderecoAuth>(),
           ),
+          lazy: true,
+        ),
+        ChangeNotifierProvider<IServiceCart>(
+          create: (ctx) => ServiceCart(),
           lazy: true,
         ),
       ],

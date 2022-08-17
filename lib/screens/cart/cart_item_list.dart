@@ -12,7 +12,7 @@ class CartItemList {
   final void Function(BuildContext) event;
 
   CartItemList({
-    this.quantidade = 0,
+    this.quantidade = 1,
     required this.descricao,
     required this.valor,
     required this.fornecedor,
