@@ -1,3 +1,4 @@
+import 'package:delivery_app_customer/screens/cart/cart_button.dart';
 import 'package:flutter/material.dart';
 
 class Pedido extends StatefulWidget {
