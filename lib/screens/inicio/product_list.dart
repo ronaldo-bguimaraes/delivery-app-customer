@@ -2,7 +2,7 @@ import 'package:delivery_app_customer/screens/inicio/product_item_list.dart';
 import 'package:flutter/material.dart';
 
 class ProductList extends StatefulWidget {
-  final List<CartItemList> list;
+  final List<ProductItemList> list;
 
   const ProductList({Key? key, required this.list}) : super(key: key);
 
