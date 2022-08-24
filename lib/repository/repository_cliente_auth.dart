@@ -20,7 +20,7 @@ class RepositoryClienteAuth<T extends Cliente, U extends Usuario> extends Reposi
   IMapper<T> mapper;
 
   @override
-  String get subPath => 'clientes';
+  String subPath = 'clientes';
 
   RepositoryClienteAuth(this.config, this.auth, this.mapper);
 

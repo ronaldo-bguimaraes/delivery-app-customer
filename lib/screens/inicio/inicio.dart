@@ -50,7 +50,9 @@ class _InicioState extends State<Inicio> {
       ingredientes: 'Pão, hamburguer, alface, tomate, ovo, milho, salsicha',
       disponivel: true,
       image: const AssetImage('./assets/images/baguncinha.png'),
-      event: (context) {},
+      event: (context) {
+        //
+      },
     ),
     ProductItemList(
       descricao: 'X-Tudo',
@@ -60,7 +62,9 @@ class _InicioState extends State<Inicio> {
       ingredientes: 'Pão, hamburguer, alface, tomate, ovo, milho, salsicha, bacon, cheddar',
       disponivel: true,
       image: const AssetImage('./assets/images/x-tudo.png'),
-      event: (context) {},
+      event: (context) {
+        //
+      },
     ),
   ];
 
@@ -75,10 +79,12 @@ class _InicioState extends State<Inicio> {
             tabs: _categorias.map((e) => Tab(text: e)).toList(),
           ),
         ),
-        body: TabBarView(children: [
-          FornecedoresList(list: _todos),
-          ProductList(list: _myList),
-        ]),
+        body: TabBarView(
+          children: [
+            FornecedoresList(list: _todos),
+            ProductList(list: _myList),
+          ],
+        ),
       ),
       length: _categorias.length,
     );

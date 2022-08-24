@@ -1,3 +1,4 @@
+import 'package:delivery_app_customer/dto/produto.dart';
 import 'package:flutter/material.dart';
 
 class ProductItemList {
@@ -20,4 +21,19 @@ class ProductItemList {
     required this.image,
     required this.event,
   });
+
+  factory ProductItemList.fromProduto(Produto produto) {
+    return ProductItemList(
+      descricao: produto.descricao,
+      valor: produto.valor,
+      fornecedor: '',
+      ingredientes: produto.ingredientes,
+      disponivel: produto.disponivel,
+      categoria: '',
+      image: const AssetImage('./assets/images/produto.png'),
+      event: (ctx) {
+        //
+      },
+    );
+  }
 }

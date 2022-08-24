@@ -3,13 +3,13 @@ import 'package:delivery_app_customer/dto/usuario.dart';
 
 class Cliente extends IEntity {
   @override
-  int? id;
+  int id;
   String cpf;
   DateTime? dataNascimento;
   Usuario usuario;
 
   Cliente({
-    this.id,
+    this.id = 0,
     this.cpf = '',
     this.dataNascimento,
     Usuario? usuario,

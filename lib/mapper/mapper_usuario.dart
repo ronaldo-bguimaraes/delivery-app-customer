@@ -5,7 +5,7 @@ class MapperUsuario implements IMapperUsuario {
   @override
   Map<String, dynamic> toMap(Usuario usuario) {
     return {
-      'id': usuario.id?.toInt(),
+      'id': usuario.id.toInt(),
       'nome': usuario.nome,
       'telefone': usuario.telefone,
       'email': usuario.email,
@@ -18,7 +18,7 @@ class MapperUsuario implements IMapperUsuario {
   @override
   Usuario fromMap(Map<String, dynamic> map) {
     return Usuario(
-      id: map['id']?.toInt(),
+      id: map['id'].toInt(),
       nome: map['nome'],
       telefone: map['telefone'],
       email: map['email'],

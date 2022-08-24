@@ -1,12 +1,12 @@
-import 'package:delivery_app_customer/dto/endereco.dart';
+import 'package:delivery_app_customer/dto/produto.dart';
 import 'package:delivery_app_customer/dto/usuario.dart';
 import 'package:delivery_app_customer/mapper/interface/i_mapper_base.dart';
-import 'package:delivery_app_customer/repository/interface/i_repository_endereco_auth.dart';
+import 'package:delivery_app_customer/repository/interface/i_repository_produto_auth.dart';
 import 'package:delivery_app_customer/repository/repository_auth.dart';
 import 'package:delivery_app_customer/service/interface/i_service_auth.dart';
 import 'package:delivery_app_customer/config/interface/i_config.dart';
 
-class RepositoryEnderecoAuth<T extends Endereco, U extends Usuario> extends RepositoryAuth<T, U> implements IRepositoryEnderecoAuth<T, U> {
+class RepositoryProdutoAuth<T extends Produto, U extends Usuario> extends RepositoryAuth<T, U> implements IRepositoryProdutoAuth<T, U> {
   @override
   IConfig config;
 
@@ -17,7 +17,7 @@ class RepositoryEnderecoAuth<T extends Endereco, U extends Usuario> extends Repo
   IMapper<T> mapper;
 
   @override
-  String subPath = 'enderecos';
+  String subPath = 'produtos';
 
-  RepositoryEnderecoAuth(this.config, this.auth, this.mapper);
+  RepositoryProdutoAuth(this.config, this.auth, this.mapper);
 }
