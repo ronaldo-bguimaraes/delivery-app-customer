@@ -1,5 +1,3 @@
-import 'package:delivery_app_customer/screens/cart/cart_item_list.dart';
-import 'package:delivery_app_customer/screens/inicio/product_item_list.dart';
 import 'package:delivery_app_customer/service/interface/i_service_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,12 +14,12 @@ class _BodyCartState extends State<BodyCart> {
   Widget build(BuildContext context) {
     return Consumer<IServiceCart>(builder: (context, cart, child) {
       return Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: ListView.separated(
           itemBuilder: (BuildContext context, int index) {
             var item = cart.cartListItem()[index];
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(vertical: 20),
               child: Column(
                 children: [
                   Row(
@@ -30,10 +28,19 @@ class _BodyCartState extends State<BodyCart> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            ListTile(
-                              contentPadding: EdgeInsets.zero,
-                              title: Text(item.descricao),
-                              subtitle: Text(item.fornecedor),
+                            Text(
+                              item.descricao,
+                              style: const TextStyle(fontSize: 18),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              item.fornecedor,
+                              style: const TextStyle(fontSize: 15),
+                            ),
+                            const SizedBox(
+                              height: 10,
                             ),
                             Text(item.ingredientes),
                             const SizedBox(
@@ -50,17 +57,21 @@ class _BodyCartState extends State<BodyCart> {
                       )
                     ],
                   ),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Row(
                     children: <Widget>[
                       ElevatedButton(
-                          onPressed: () {
-                            setState(
-                              () {
-                                cart.remove(item);
-                              },
-                            );
-                          },
-                          child: Text("Remover")),
+                        onPressed: () {
+                          setState(
+                            () {
+                              cart.remove(item);
+                            },
+                          );
+                        },
+                        child: const Text("Remover"),
+                      ),
                       Expanded(
                         child: Container(),
                       ),
@@ -75,7 +86,7 @@ class _BodyCartState extends State<BodyCart> {
                             );
                           }
                         },
-                        icon: Icon(Icons.remove),
+                        icon: const Icon(Icons.remove),
                       ),
                       Text(
                         item.quantidade.toString(),
@@ -87,7 +98,7 @@ class _BodyCartState extends State<BodyCart> {
                             item.quantidade += 1;
                           });
                         },
-                        icon: Icon(Icons.add),
+                        icon: const Icon(Icons.add),
                       ),
                     ],
                   )

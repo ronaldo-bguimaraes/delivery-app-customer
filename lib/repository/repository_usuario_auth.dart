@@ -19,7 +19,7 @@ class RepositoryUsuarioAuth<T extends Usuario, U extends Usuario> extends Reposi
   IMapper<T> mapper;
 
   @override
-  String get subPath => 'usuarios';
+  String subPath = 'usuarios';
 
   RepositoryUsuarioAuth(this.config, this.auth, this.mapper);
 
@@ -50,7 +50,7 @@ class RepositoryUsuarioAuth<T extends Usuario, U extends Usuario> extends Reposi
 
   @override
   Future<T> save(T entity) async {
-    if (entity.id != null) {
+    if (entity.id == 0) {
       return await update(entity);
     }
     return await add(entity);

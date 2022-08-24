@@ -6,10 +6,10 @@ class MapperCliente<T extends Cliente> implements IMapperCliente {
   @override
   Map<String, dynamic> toMap(Cliente cliente) {
     return {
-      'id': cliente.id?.toInt(),
+      'id': cliente.id.toInt(),
       'cpf': cliente.cpf,
       'dataNascimento': cliente.dataNascimento?.toIso8601String(),
-      'usuarioId': cliente.usuario.id?.toInt(),
+      'usuarioId': cliente.usuario.id.toInt(),
     };
   }
 
@@ -20,7 +20,7 @@ class MapperCliente<T extends Cliente> implements IMapperCliente {
       cpf: map['cpf'],
       dataNascimento: DateTime.parse(map['dataNascimento']),
       usuario: Usuario(
-        id: map['usuarioId']?.toInt(),
+        id: map['usuarioId'].toInt(),
       ),
     );
   }

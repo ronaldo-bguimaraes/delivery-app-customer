@@ -3,7 +3,7 @@ import 'package:delivery_app_customer/dto/inteface/i_entity.dart';
 
 class Usuario extends IEntity {
   @override
-  int? id;
+  int id;
   String nome;
   String telefone;
   String email;
@@ -13,7 +13,7 @@ class Usuario extends IEntity {
   Cliente? cliente;
 
   Usuario({
-    this.id,
+    this.id = 0,
     this.nome = '',
     this.telefone = '',
     this.email = '',

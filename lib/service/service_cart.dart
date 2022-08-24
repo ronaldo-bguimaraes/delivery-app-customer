@@ -12,7 +12,9 @@ class ServiceCart extends ChangeNotifier implements IServiceCart {
       ingredientes: 'Pão, hamburguer, alface, tomate, ovo, milho, salsicha',
       disponivel: true,
       image: const AssetImage('./assets/images/baguncinha.png'),
-      event: (context) {},
+      event: (context) {
+        //
+      },
     ),
     CartItemList(
       descricao: 'X-Tudo',
@@ -22,9 +24,12 @@ class ServiceCart extends ChangeNotifier implements IServiceCart {
       ingredientes: 'Pão, hamburguer, alface, tomate, ovo, milho, salsicha, bacon, cheddar',
       disponivel: true,
       image: const AssetImage('./assets/images/x-tudo.png'),
-      event: (context) {},
+      event: (context) {
+        //
+      },
     ),
   ];
+
   @override
   void remove(CartItemList itemCart) {
     _myList.remove(itemCart);

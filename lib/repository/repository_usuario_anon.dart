@@ -15,7 +15,7 @@ class RepositoryUsuarioAnon<T extends Usuario, U extends Usuario> extends Reposi
   IMapper<T> mapper;
 
   @override
-  String get subPath => 'usuarios';
+  String subPath = 'usuarios';
 
   RepositoryUsuarioAnon(this.config, this.mapper);
 
