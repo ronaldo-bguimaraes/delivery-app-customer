@@ -1,5 +1,9 @@
+import 'package:delivery_app_customer/dto/item_produto.dart';
 import 'package:delivery_app_customer/dto/produto.dart';
+import 'package:delivery_app_customer/screens/cart/cart_screen.dart';
+import 'package:delivery_app_customer/service/interface/i_service_cart.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductItemList {
   final String descricao;
@@ -26,13 +30,16 @@ class ProductItemList {
     return ProductItemList(
       descricao: produto.descricao,
       valor: produto.valor,
-      fornecedor: '',
+      fornecedor: produto.fornecedor.razaoSocial,
       ingredientes: produto.ingredientes,
       disponivel: produto.disponivel,
       categoria: '',
       image: const AssetImage('./assets/images/produto.png'),
       event: (ctx) {
+        final itemProduto = ItemProduto.fromProduto(produto);
+        ctx.read<IServiceCart>().add(itemProduto);
         //
+        Navigator.of(ctx).pushNamed(CartScreen.routeName);
       },
     );
   }

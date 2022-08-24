@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CartScreen extends StatefulWidget {
+  static const String routeName = '/cart-screen';
+
   const CartScreen({Key? key}) : super(key: key);
 
   @override
@@ -22,7 +24,7 @@ class _CartScreenState extends State<CartScreen> {
               alignment: Alignment.center,
               padding: const EdgeInsets.only(right: 8.0),
               child: Text(
-                "${cart.quantidadeItens()} itens",
+                "${cart.itensProduto.length} itens",
                 style: const TextStyle(fontSize: 18),
               ),
             )

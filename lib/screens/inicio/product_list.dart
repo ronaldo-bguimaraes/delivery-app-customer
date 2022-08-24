@@ -23,13 +23,13 @@ class _ProductListState extends State<ProductList> {
         return produtos != null && produtos.isNotEmpty;
       },
       builder: (ctx, produtos) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: ListView.separated(
-            itemBuilder: (BuildContext context, int index) {
-              var produto = ProductItemList.fromProduto(produtos[index]);
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
+        return ListView.separated(
+          itemBuilder: (BuildContext context, int index) {
+            final product = produtos[index];
+            final productItemList = ProductItemList.fromProduto(product);
+            return GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.all(20),
                 child: Row(
                   children: [
                     Expanded(
@@ -37,36 +37,49 @@ class _ProductListState extends State<ProductList> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            produto.descricao,
+                            productItemList.descricao,
                             style: const TextStyle(fontSize: 18),
                           ),
-                          Text(produto.fornecedor),
-                          Text(produto.ingredientes),
                           const SizedBox(
                             height: 10,
                           ),
-                          Text("Preço: R\$" + produto.valor.toString())
+                          Text(
+                            productItemList.fornecedor,
+                            style: const TextStyle(fontSize: 15),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(productItemList.ingredientes),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text("Preço: R\$" + productItemList.valor.toString())
                         ],
                       ),
                     ),
                     Image(
-                      image: produto.image,
+                      image: productItemList.image,
                       width: 100,
                       height: 100,
                       fit: BoxFit.fitWidth,
                     ),
                   ],
                 ),
-              );
-            },
-            separatorBuilder: (context, index) {
-              return const Padding(
-                padding: EdgeInsets.symmetric(vertical: 0),
-                child: Divider(),
-              );
-            },
-            itemCount: produtos.length,
-          ),
+              ),
+              onTap: () {
+                productItemList.event(context);
+              },
+              behavior: HitTestBehavior.opaque,
+            );
+          },
+          separatorBuilder: (context, index) {
+            return const Padding(
+              padding: EdgeInsets.symmetric(vertical: 0),
+              child: Divider(),
+            );
+          },
+          itemCount: produtos.length,
         );
       },
     );

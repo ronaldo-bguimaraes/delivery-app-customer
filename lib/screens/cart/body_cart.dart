@@ -1,3 +1,4 @@
+import 'package:delivery_app_customer/screens/cart/cart_item_list.dart';
 import 'package:delivery_app_customer/service/interface/i_service_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +18,8 @@ class _BodyCartState extends State<BodyCart> {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: ListView.separated(
           itemBuilder: (BuildContext context, int index) {
-            var item = cart.cartListItem()[index];
+            final itemProduto = cart.itensProduto[index];
+            final cartItemList = CartItemList.fromItemProduto(itemProduto);
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: Column(
@@ -29,31 +31,31 @@ class _BodyCartState extends State<BodyCart> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              item.descricao,
+                              cartItemList.descricao,
                               style: const TextStyle(fontSize: 18),
                             ),
                             const SizedBox(
                               height: 10,
                             ),
                             Text(
-                              item.fornecedor,
+                              cartItemList.fornecedor,
                               style: const TextStyle(fontSize: 15),
                             ),
                             const SizedBox(
                               height: 10,
                             ),
-                            Text(item.ingredientes),
+                            Text(cartItemList.ingredientes),
                             const SizedBox(
                               height: 10,
                             ),
-                            Text("Preço: R\$" + item.valor.toString())
+                            Text("Preço: R\$" + cartItemList.valor.toString())
                           ],
                         ),
                       ),
                       SizedBox(
                         height: 120,
                         width: 120,
-                        child: Image(image: item.image),
+                        child: Image(image: cartItemList.image),
                       )
                     ],
                   ),
@@ -64,11 +66,9 @@ class _BodyCartState extends State<BodyCart> {
                     children: <Widget>[
                       ElevatedButton(
                         onPressed: () {
-                          setState(
-                            () {
-                              cart.remove(item);
-                            },
-                          );
+                          setState(() {
+                            cart.remove(itemProduto);
+                          });
                         },
                         child: const Text("Remover"),
                       ),
@@ -78,10 +78,10 @@ class _BodyCartState extends State<BodyCart> {
                       IconButton(
                         color: Colors.red,
                         onPressed: () {
-                          if (item.quantidade > 1) {
+                          if (cartItemList.quantidade > 1) {
                             setState(
                               () {
-                                item.quantidade -= 1;
+                                itemProduto.quantidade -= 1;
                               },
                             );
                           }
@@ -89,13 +89,13 @@ class _BodyCartState extends State<BodyCart> {
                         icon: const Icon(Icons.remove),
                       ),
                       Text(
-                        item.quantidade.toString(),
+                        cartItemList.quantidade.toString(),
                       ),
                       IconButton(
                         color: Colors.green[800],
                         onPressed: () {
                           setState(() {
-                            item.quantidade += 1;
+                            itemProduto.quantidade += 1;
                           });
                         },
                         icon: const Icon(Icons.add),
@@ -106,9 +106,8 @@ class _BodyCartState extends State<BodyCart> {
               ),
             );
           },
-          // padding: const EdgeInsets.all(16.0),
           separatorBuilder: (context, index) => const Divider(),
-          itemCount: cart.cartListItem().length,
+          itemCount: cart.itensProduto.length,
         ),
       );
     });

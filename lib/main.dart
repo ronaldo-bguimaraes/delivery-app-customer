@@ -1,4 +1,5 @@
 import 'package:delivery_app_customer/provider/provider_dependencies.dart';
+import 'package:delivery_app_customer/screens/cart/cart_screen.dart';
 import 'package:delivery_app_customer/screens/home/home.dart';
 import 'package:delivery_app_customer/screens/perfil/cartao.dart';
 import 'package:delivery_app_customer/screens/perfil/pagamento.dart';
@@ -30,9 +31,10 @@ class Main extends StatelessWidget {
         UserSignIn.routeName: (context) => const UserSignIn(),
         UserSignInEmail.routeName: (context) => const UserSignInEmail(),
         UserSignUp.routeName: (context) => const UserSignUp(),
-        Home.routeName: (context) => const Home(),
         Pagamento.routeName: (context) => const Pagamento(),
+        CartScreen.routeName: (context) => const CartScreen(),
         Cartao.routeName: (context) => const Cartao(),
+        Home.routeName: (context) => const Home(),
       },
     );
   }

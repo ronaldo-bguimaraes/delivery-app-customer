@@ -1,3 +1,4 @@
+import 'package:delivery_app_customer/dto/fornecedor.dart';
 import 'package:delivery_app_customer/dto/produto.dart';
 import 'package:delivery_app_customer/mapper/interface/i_mapper_produto.dart';
 
@@ -10,7 +11,7 @@ class MapperProduto implements IMapperProduto {
       'valor': produto.valor.toDouble(),
       'ingredientes': produto.ingredientes,
       'disponivel': produto.disponivel,
-      'fornecedorId': produto.fornecedorId.toInt(),
+      'fornecedorId': produto.fornecedor.id.toInt(),
     };
   }
 
@@ -22,7 +23,9 @@ class MapperProduto implements IMapperProduto {
       valor: map['valor'].toDouble(),
       ingredientes: map['ingredientes'],
       disponivel: map['disponivel'],
-      fornecedorId: map['fornecedorId'].toInt(),
+      fornecedor: Fornecedor(
+        id: map['fornecedorId'].toInt(),
+      ),
     );
   }
 }
