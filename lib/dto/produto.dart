@@ -1,3 +1,4 @@
+import 'package:delivery_app_customer/dto/fornecedor.dart';
 import 'package:delivery_app_customer/dto/inteface/i_entity.dart';
 
 class Produto extends IEntity {
@@ -7,7 +8,7 @@ class Produto extends IEntity {
   double valor;
   String ingredientes;
   bool disponivel;
-  int fornecedorId;
+  Fornecedor fornecedor;
 
   Produto({
     this.id = 0,
@@ -15,6 +16,6 @@ class Produto extends IEntity {
     this.valor = 0,
     this.ingredientes = '',
     this.disponivel = false,
-    this.fornecedorId = 0,
-  });
+    Fornecedor? fornecedor,
+  }) : fornecedor = fornecedor ?? Fornecedor();
 }

@@ -12,11 +12,7 @@ class CartButton extends StatelessWidget {
         color: Colors.white,
       ),
       onPressed: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => const CartScreen(),
-          ),
-        );
+        Navigator.of(context).pushNamed(CartScreen.routeName);
       },
       backgroundColor: Theme.of(context).primaryColor,
     );

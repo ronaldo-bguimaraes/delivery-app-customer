@@ -1,9 +1,8 @@
-import 'package:delivery_app_customer/screens/cart/cart_item_list.dart';
+import 'package:delivery_app_customer/dto/item_produto.dart';
 import 'package:flutter/cupertino.dart';
 
 abstract class IServiceCart extends ChangeNotifier {
-  void remove(CartItemList itemCart);
-
-  int quantidadeItens();
-  List<CartItemList> cartListItem();
+  abstract final List<ItemProduto> itensProduto;
+  void add(ItemProduto itemProduto);
+  void remove(ItemProduto itemProduto);
 }
