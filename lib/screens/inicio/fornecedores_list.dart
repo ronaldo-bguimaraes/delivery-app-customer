@@ -54,7 +54,7 @@ class FornecedoresList extends StatelessWidget {
                             height: 5,
                           ),
                           Text(
-                            '${item.tempoEntrega} - ${item.tempoEntrega + 10} min (${item.frete > 0 ? 'R\$ ${item.frete}' : 'Grátis'})',
+                            '${item.tempoEntrega} - ${item.tempoEntrega + 10} min (${item.frete > 0 ? 'R\$ ${item.frete.toStringAsFixed(2)}' : 'Grátis'})',
                             style: const TextStyle(
                               fontSize: 12,
                             ),
