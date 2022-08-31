@@ -31,6 +31,21 @@ class _CartScreenState extends State<CartScreen> {
           ],
         ),
         body: const BodyCart(),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () {},
+                child: Text("Finalizar Pedido: R\$ ${cart.totalCart().toStringAsFixed(2)}"),
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.all(20),
+                ),
+              ),
+            ],
+          ),
+        ),
       );
     });
   }

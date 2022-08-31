@@ -48,7 +48,7 @@ class _BodyCartState extends State<BodyCart> {
                             const SizedBox(
                               height: 10,
                             ),
-                            Text("Preço: R\$" + cartItemList.valor.toString())
+                            Text("Preço: R\$" + cartItemList.valor.toStringAsFixed(2))
                           ],
                         ),
                       ),
@@ -67,7 +67,7 @@ class _BodyCartState extends State<BodyCart> {
                       ElevatedButton(
                         onPressed: () {
                           setState(() {
-                            cart.remove(itemProduto);
+                            cart.delete(itemProduto);
                           });
                         },
                         child: const Text("Remover"),
@@ -78,13 +78,9 @@ class _BodyCartState extends State<BodyCart> {
                       IconButton(
                         color: Colors.red,
                         onPressed: () {
-                          if (cartItemList.quantidade > 1) {
-                            setState(
-                              () {
-                                itemProduto.quantidade -= 1;
-                              },
-                            );
-                          }
+                          setState(() {
+                            cart.remove(itemProduto);
+                          });
                         },
                         icon: const Icon(Icons.remove),
                       ),
@@ -95,7 +91,7 @@ class _BodyCartState extends State<BodyCart> {
                         color: Colors.green[800],
                         onPressed: () {
                           setState(() {
-                            itemProduto.quantidade += 1;
+                            cart.add(itemProduto);
                           });
                         },
                         icon: const Icon(Icons.add),

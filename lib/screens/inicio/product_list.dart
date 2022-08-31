@@ -54,7 +54,7 @@ class _ProductListState extends State<ProductList> {
                           const SizedBox(
                             height: 10,
                           ),
-                          Text("Preço: R\$" + productItemList.valor.toString())
+                          Text("Preço: R\$" + productItemList.valor.toStringAsFixed(2))
                         ],
                       ),
                     ),
