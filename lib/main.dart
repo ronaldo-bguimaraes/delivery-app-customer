@@ -1,3 +1,4 @@
+import 'package:delivery_app_customer/screens/user/check_sign_in.dart';
 import 'package:delivery_app_customer/provider/provider_dependencies.dart';
 import 'package:delivery_app_customer/screens/cart/cart_screen.dart';
 import 'package:delivery_app_customer/screens/home/home.dart';
@@ -26,8 +27,9 @@ class Main extends StatelessWidget {
         primarySwatch: Colors.deepOrange,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: UserSignIn.routeName,
+      initialRoute: CheckSignIn.routeName,
       routes: {
+        CheckSignIn.routeName: (context) => const CheckSignIn(),
         UserSignIn.routeName: (context) => const UserSignIn(),
         UserSignInEmail.routeName: (context) => const UserSignInEmail(),
         UserSignUp.routeName: (context) => const UserSignUp(),

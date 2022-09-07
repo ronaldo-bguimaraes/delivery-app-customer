@@ -5,4 +5,8 @@ abstract class IServiceAuth<T extends Usuario> {
   String? get currentToken;
   Future<T> signIn(T usuario);
   Future<T> signUp(T usuario);
+  Future<void> signOut();
+
+  Future<T?> getCurrentUser();
+  Future<String?> getCurrentToken();
 }

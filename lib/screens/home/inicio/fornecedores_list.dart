@@ -1,4 +1,4 @@
-import 'package:delivery_app_customer/screens/inicio/fornecedor_item.dart';
+import 'package:delivery_app_customer/screens/home/inicio/fornecedor_item.dart';
 import 'package:flutter/material.dart';
 
 class FornecedoresList extends StatelessWidget {

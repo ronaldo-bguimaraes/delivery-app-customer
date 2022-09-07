@@ -1,6 +1,4 @@
-import 'package:delivery_app_customer/main.dart';
 import 'package:delivery_app_customer/screens/pedido/pedido_item.dart';
-import 'package:delivery_app_customer/screens/pedido/pedido_list.dart';
 import 'package:flutter/material.dart';
 
 class Pedido extends StatefulWidget {
@@ -11,8 +9,6 @@ class Pedido extends StatefulWidget {
 }
 
 class _PedidoState extends State<Pedido> {
-  final List<String> _loja = ['Fornecedores', 'Produto'];
-
   final PedidoItem item = PedidoItem(
     title: 'CJ Lanches',
     image: const AssetImage('./assets/images/user.png'),
@@ -76,47 +72,47 @@ class _PedidoState extends State<Pedido> {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  Text(
+                  const Text(
                     "Resumo de valores",
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 18,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 25,
                   ),
                   Row(
-                    children: [
+                    children: const [
                       Text("SubTotal"),
                       Text("R\$38,40"),
                     ],
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 25,
                   ),
                   Row(
-                    children: [
+                    children: const [
                       Text("Taxa de entrega"),
                       Text("R\$0,00"),
                     ],
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 25,
                   ),
                   Row(
-                    children: [
+                    children: const [
                       Text(
                         "Total",
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
                         "R\$38,40",
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
@@ -124,12 +120,12 @@ class _PedidoState extends State<Pedido> {
                     ],
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 25,
                   ),
-                  Text(
+                  const Text(
                     "Dados de endereço",
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 18,
                     ),
                   ),
@@ -142,7 +138,7 @@ class _PedidoState extends State<Pedido> {
                           padding: const EdgeInsets.all(20),
                           child: Row(
                             children: [
-                              Expanded(
+                              const Expanded(
                                 flex: 0,
                                 child: Icon(Icons.location_pin),
                               ),
@@ -152,19 +148,19 @@ class _PedidoState extends State<Pedido> {
                               Expanded(
                                 flex: 1,
                                 child: Column(
-                                  children: [
+                                  children: const [
                                     Text(
                                       "Rua Cel L Figueredo",
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         fontSize: 20,
                                       ),
                                     ),
-                                    const SizedBox(
+                                    SizedBox(
                                       height: 5,
                                     ),
                                     Text(
                                       "Jardim tropical",
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         fontSize: 15,
                                       ),
                                     ),
@@ -188,12 +184,12 @@ class _PedidoState extends State<Pedido> {
                       },
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 25,
                   ),
-                  Text(
+                  const Text(
                     "Dados de pagamento",
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 18,
                     ),
                   ),
@@ -206,7 +202,7 @@ class _PedidoState extends State<Pedido> {
                           padding: const EdgeInsets.all(20),
                           child: Row(
                             children: [
-                              Expanded(
+                              const Expanded(
                                 flex: 0,
                                 child: Icon(Icons.payment),
                               ),
@@ -216,19 +212,19 @@ class _PedidoState extends State<Pedido> {
                               Expanded(
                                 flex: 1,
                                 child: Column(
-                                  children: [
+                                  children: const [
                                     Text(
                                       "Crédito pelo App",
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         fontSize: 20,
                                       ),
                                     ),
-                                    const SizedBox(
+                                    SizedBox(
                                       height: 5,
                                     ),
                                     Text(
                                       "Master Card **** 3140",
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         fontSize: 15,
                                       ),
                                     ),
@@ -260,7 +256,7 @@ class _PedidoState extends State<Pedido> {
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
                 onPressed: (() {}),
-                child: Text("Fazer pedido"),
+                child: const Text("Fazer pedido"),
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.all(20),
                 ),

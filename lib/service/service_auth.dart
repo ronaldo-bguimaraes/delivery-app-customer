@@ -35,4 +35,23 @@ class ServiceAuth<T extends Usuario, U extends Usuario> implements IServiceAuth<
     final user = await repositoryUsuario.signUp(usuario);
     return await signIn(user);
   }
+
+  @override
+  Future<T> getCurrentUser() async {
+    final usuario = await repositoryUsuario.getCurrentUser();
+    _usuario = usuario;
+    return usuario;
+  }
+
+  @override
+  Future<void> signOut() async {
+    await repositoryUsuario.signOut();
+  }
+
+  @override
+  Future<String?> getCurrentToken() async {
+    final usuario = await repositoryUsuario.getCurrentUser();
+    _usuario = usuario;
+    return usuario.token;
+  }
 }
