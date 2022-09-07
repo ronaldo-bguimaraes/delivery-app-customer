@@ -1,20 +1,20 @@
 import 'package:delivery_app_customer/dto/produto.dart';
 import 'package:delivery_app_customer/screens/builder/future_snapshot_builder.dart';
-import 'package:delivery_app_customer/screens/inicio/product_item_list.dart';
+import 'package:delivery_app_customer/screens/home/inicio/produto/produto_item_list.dart';
 import 'package:delivery_app_customer/service/interface/i_service_produto_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ProductList extends StatefulWidget {
-  final List<ProductItemList> list;
+class ProdutoList extends StatefulWidget {
+  final List<ProdutoItemList> list;
 
-  const ProductList({Key? key, required this.list}) : super(key: key);
+  const ProdutoList({Key? key, required this.list}) : super(key: key);
 
   @override
-  State<ProductList> createState() => _ProductListState();
+  State<ProdutoList> createState() => _ProdutoListState();
 }
 
-class _ProductListState extends State<ProductList> {
+class _ProdutoListState extends State<ProdutoList> {
   @override
   Widget build(BuildContext ctx) {
     return FutureSnapshotBuilder<List<Produto>>(
@@ -26,7 +26,7 @@ class _ProductListState extends State<ProductList> {
         return ListView.separated(
           itemBuilder: (BuildContext context, int index) {
             final product = produtos[index];
-            final productItemList = ProductItemList.fromProduto(product);
+            final productItemList = ProdutoItemList.fromProduto(product);
             return GestureDetector(
               child: Padding(
                 padding: const EdgeInsets.all(20),

@@ -157,7 +157,7 @@ class _UserSignInState extends State<UserSignIn> {
                         ),
                       ),
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.black,
+                        backgroundColor: Colors.black,
                         padding: const EdgeInsets.all(15),
                       ),
                       onPressed: () {

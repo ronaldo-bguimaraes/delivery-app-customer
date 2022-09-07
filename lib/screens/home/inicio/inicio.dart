@@ -1,10 +1,9 @@
-import 'package:delivery_app_customer/screens/inicio/fornecedores_list.dart';
-import 'package:delivery_app_customer/screens/inicio/fornecedor_item.dart';
-import 'package:delivery_app_customer/screens/inicio/product_item_list.dart';
-import 'package:delivery_app_customer/screens/inicio/product_list.dart';
+import 'package:delivery_app_customer/screens/home/inicio/cart/cart_button.dart';
+import 'package:delivery_app_customer/screens/home/inicio/fornecedor/fornecedor_list.dart';
+import 'package:delivery_app_customer/screens/home/inicio/fornecedor/fornecedor_item_list.dart';
+import 'package:delivery_app_customer/screens/home/inicio/produto/produto_item_list.dart';
+import 'package:delivery_app_customer/screens/home/inicio/produto/produto_list.dart';
 import 'package:flutter/material.dart';
-
-import '../cart/cart_button.dart';
 
 class Inicio extends StatefulWidget {
   const Inicio({Key? key}) : super(key: key);
@@ -14,10 +13,10 @@ class Inicio extends StatefulWidget {
 }
 
 class _InicioState extends State<Inicio> {
-  final List<String> _categorias = ['Fornecedores', 'Produto'];
+  final List<String> _categorias = ['Fornecedores', 'Produtos'];
 
-  final List<FornecedorItem> _todos = [
-    FornecedorItem(
+  final List<FornecedorItemList> _todos = [
+    FornecedorItemList(
       title: 'CJ Lanches',
       categoria: 'Lanches',
       distancia: 5.5,
@@ -28,7 +27,7 @@ class _InicioState extends State<Inicio> {
         //
       },
     ),
-    FornecedorItem(
+    FornecedorItemList(
       title: 'Faveri Carnes e Cia',
       categoria: 'Carnes',
       distancia: 7.2,
@@ -41,8 +40,8 @@ class _InicioState extends State<Inicio> {
     ),
   ];
 
-  final List<ProductItemList> _myList = [
-    ProductItemList(
+  final List<ProdutoItemList> _myList = [
+    ProdutoItemList(
       descricao: 'Baguncinha',
       valor: 15,
       categoria: 'Lanches',
@@ -54,7 +53,7 @@ class _InicioState extends State<Inicio> {
         //
       },
     ),
-    ProductItemList(
+    ProdutoItemList(
       descricao: 'X-Tudo',
       valor: 25,
       categoria: 'Lanches',
@@ -74,15 +73,15 @@ class _InicioState extends State<Inicio> {
       child: Scaffold(
         floatingActionButton: const CartButton(),
         appBar: AppBar(
-          title: const Text('Fornecedores'),
+          title: const Text('Inicio'),
           bottom: TabBar(
             tabs: _categorias.map((e) => Tab(text: e)).toList(),
           ),
         ),
         body: TabBarView(
           children: [
-            FornecedoresList(list: _todos),
-            ProductList(list: _myList),
+            FornecedorList(list: _todos),
+            ProdutoList(list: _myList),
           ],
         ),
       ),

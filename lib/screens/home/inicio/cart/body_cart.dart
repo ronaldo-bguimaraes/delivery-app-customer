@@ -1,4 +1,4 @@
-import 'package:delivery_app_customer/screens/cart/cart_item_list.dart';
+import 'package:delivery_app_customer/screens/home/inicio/cart/cart_item_list.dart';
 import 'package:delivery_app_customer/service/interface/i_service_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -48,7 +48,11 @@ class _BodyCartState extends State<BodyCart> {
                             const SizedBox(
                               height: 10,
                             ),
-                            Text("Preço: R\$" + cartItemList.valor.toStringAsFixed(2))
+                            Text("Preço: R\$" + cartItemList.valor.toStringAsFixed(2)),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text("SubTotal: R\$" + (cartItemList.valor * cartItemList.quantidade).toStringAsFixed(2))
                           ],
                         ),
                       ),
