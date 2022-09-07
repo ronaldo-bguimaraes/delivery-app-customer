@@ -8,7 +8,7 @@ class MapperCliente<T extends Cliente> implements IMapperCliente {
     return {
       'id': cliente.id.toInt(),
       'cpf': cliente.cpf,
-      'dataNascimento': cliente.dataNascimento?.toIso8601String(),
+      'dataNascimento': cliente.dataNascimento.toIso8601String(),
       'usuarioId': cliente.usuario.id.toInt(),
     };
   }

@@ -3,7 +3,7 @@ import 'package:delivery_app_customer/dto/usuario.dart';
 import 'package:delivery_app_customer/screens/perfil/endereco_list.dart';
 import 'package:delivery_app_customer/screens/perfil/list_item.dart';
 import 'package:delivery_app_customer/screens/perfil/meus_dados.dart';
-import 'package:delivery_app_customer/screens/perfil/pagamento.dart';
+import 'package:delivery_app_customer/screens/perfil/minhas_formas_pagamento.dart';
 import 'package:delivery_app_customer/screens/user/user_sign_in.dart';
 import 'package:delivery_app_customer/service/interface/i_service_auth.dart';
 import 'package:delivery_app_customer/service/interface/i_service_cliente_auth.dart';
@@ -45,7 +45,7 @@ class _PerfilState extends State<Perfil> {
       subTitle: 'Meus pagamentos e cartões',
       icon: Icons.payment,
       event: (context) {
-        Navigator.of(context).pushNamed(Pagamento.routeName);
+        Navigator.of(context).pushNamed(MinhasFormasPagamento.routeName);
       },
     ),
     ListItem(
