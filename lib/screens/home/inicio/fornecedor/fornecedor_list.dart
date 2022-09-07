@@ -1,10 +1,10 @@
-import 'package:delivery_app_customer/screens/pedido/pedido_item.dart';
+import 'package:delivery_app_customer/screens/home/inicio/fornecedor/fornecedor_item_list.dart';
 import 'package:flutter/material.dart';
 
-class PedidoList extends StatelessWidget {
-  final List<PedidoItem> list;
+class FornecedorList extends StatelessWidget {
+  final List<FornecedorItemList> list;
 
-  const PedidoList({Key? key, required this.list}) : super(key: key);
+  const FornecedorList({Key? key, required this.list}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +44,30 @@ class PedidoList extends StatelessWidget {
                           const SizedBox(
                             height: 5,
                           ),
+                          Text(
+                            '${item.categoria} - ${item.distancia} KM',
+                            style: const TextStyle(
+                              fontSize: 15,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            '${item.tempoEntrega} - ${item.tempoEntrega + 10} min (${item.frete > 0 ? 'R\$ ${item.frete.toStringAsFixed(2)}' : 'Grátis'})',
+                            style: const TextStyle(
+                              fontSize: 12,
+                            ),
+                          ),
                         ],
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
+                      ),
+                    ),
+                    const Expanded(
+                      flex: 0,
+                      child: Icon(
+                        Icons.arrow_forward,
                       ),
                     ),
                   ],

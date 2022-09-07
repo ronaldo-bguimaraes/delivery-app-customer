@@ -1,4 +1,4 @@
-import 'package:delivery_app_customer/screens/cart/cart_screen.dart';
+import 'package:delivery_app_customer/screens/home/inicio/cart/cart_screen.dart';
 import 'package:flutter/material.dart';
 
 class CartButton extends StatelessWidget {
