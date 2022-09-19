@@ -1,4 +1,5 @@
 import 'package:delivery_app_customer/dto/endereco.dart';
+import 'package:delivery_app_customer/dto/usuario.dart';
 import 'package:delivery_app_customer/mapper/interface/i_mapper_endereco.dart';
 
 class MapperEndereco implements IMapperEndereco {
@@ -12,7 +13,7 @@ class MapperEndereco implements IMapperEndereco {
       'descricao': endereco.descricao,
       'latitude': endereco.latitude.toDouble(),
       'longitude': endereco.longitude.toDouble(),
-      'usuarioId': endereco.usuarioId.toInt(),
+      'usuarioId': endereco.usuario.id.toInt(),
     };
   }
 
@@ -26,7 +27,9 @@ class MapperEndereco implements IMapperEndereco {
       descricao: map['descricao'],
       latitude: map['latitude'].toDouble(),
       longitude: map['longitude'].toDouble(),
-      usuarioId: map['usuarioId'].toInt(),
+      usuario: Usuario(
+        id: map['usuarioId'].toInt(),
+      ),
     );
   }
 }

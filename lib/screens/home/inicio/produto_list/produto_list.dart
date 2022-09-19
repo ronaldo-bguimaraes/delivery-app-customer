@@ -1,6 +1,6 @@
 import 'package:delivery_app_customer/dto/produto.dart';
 import 'package:delivery_app_customer/screens/builder/future_snapshot_builder.dart';
-import 'package:delivery_app_customer/screens/home/inicio/produto/produto_item_list.dart';
+import 'package:delivery_app_customer/screens/home/inicio/produto_list/produto_item_list.dart';
 import 'package:delivery_app_customer/service/interface/i_service_produto_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

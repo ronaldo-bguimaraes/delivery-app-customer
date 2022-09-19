@@ -151,7 +151,7 @@ class _UserSignUpState extends State<UserSignUp> {
                       height: 15,
                     ),
                     TextFormField(
-                      initialValue: _cliente.dataNascimento != null ? _dateFormat.format(_cliente.dataNascimento!) : null,
+                      initialValue: _dateFormat.format(_cliente.dataNascimento),
                       onSaved: (value) {
                         _cliente.dataNascimento = _dateFormat.parse(value!);
                       },

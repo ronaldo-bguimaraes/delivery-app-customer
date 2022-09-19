@@ -1,8 +1,8 @@
 import 'package:delivery_app_customer/screens/home/inicio/cart/cart_button.dart';
-import 'package:delivery_app_customer/screens/home/inicio/fornecedor/fornecedor_list.dart';
-import 'package:delivery_app_customer/screens/home/inicio/fornecedor/fornecedor_item_list.dart';
-import 'package:delivery_app_customer/screens/home/inicio/produto/produto_item_list.dart';
-import 'package:delivery_app_customer/screens/home/inicio/produto/produto_list.dart';
+import 'package:delivery_app_customer/screens/home/inicio/fornecedor_list/fornecedor_list.dart';
+import 'package:delivery_app_customer/screens/home/inicio/fornecedor_list/fornecedor_item_list.dart';
+import 'package:delivery_app_customer/screens/home/inicio/produto_list/produto_item_list.dart';
+import 'package:delivery_app_customer/screens/home/inicio/produto_list/produto_list.dart';
 import 'package:flutter/material.dart';
 
 class Inicio extends StatefulWidget {

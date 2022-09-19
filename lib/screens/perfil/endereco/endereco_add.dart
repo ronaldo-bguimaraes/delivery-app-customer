@@ -32,7 +32,7 @@ class _EnderecoAddState extends State<EnderecoAdd> {
     super.initState();
     googlePlace = GooglePlace('AIzaSyAmFaKZOL7BhmvpocjiFdeWIGG0aWa-pho');
     _descricaoController.text = _endereco.descricao;
-    _endereco.usuarioId = widget.usuario.id;
+    _endereco.usuario.id = widget.usuario.id;
   }
 
   @override

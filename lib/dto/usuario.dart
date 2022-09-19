@@ -7,10 +7,9 @@ class Usuario extends IEntity {
   String nome;
   String telefone;
   String email;
-  String? senha;
-  DateTime? dataCadastro;
-  String? token;
-  Cliente? cliente;
+  String senha;
+  DateTime dataCadastro;
+  String token;
 
   Usuario({
     this.id = 0,
@@ -18,8 +17,8 @@ class Usuario extends IEntity {
     this.telefone = '',
     this.email = '',
     this.senha = '',
-    this.dataCadastro,
-    this.token,
-    this.cliente,
-  });
+    DateTime? dataCadastro,
+    this.token = '',
+    Cliente? cliente,
+  }) : dataCadastro = dataCadastro ?? DateTime.now();
 }

@@ -10,7 +10,7 @@ class MapperUsuario implements IMapperUsuario {
       'telefone': usuario.telefone,
       'email': usuario.email,
       'senha': usuario.senha,
-      'dataCadastro': usuario.dataCadastro?.toIso8601String(),
+      'dataCadastro': usuario.dataCadastro.toIso8601String(),
       'token': usuario.token,
     };
   }

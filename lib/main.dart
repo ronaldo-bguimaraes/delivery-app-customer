@@ -5,7 +5,7 @@ import 'package:delivery_app_customer/provider/provider_dependencies.dart';
 import 'package:delivery_app_customer/screens/home/inicio/cart/cart_screen.dart';
 import 'package:delivery_app_customer/screens/home/home.dart';
 import 'package:delivery_app_customer/screens/perfil/cartao.dart';
-import 'package:delivery_app_customer/screens/perfil/pagamento.dart';
+import 'package:delivery_app_customer/screens/perfil/minhas_formas_pagamento.dart';
 import 'package:delivery_app_customer/screens/user/user_sign_email.dart';
 import 'package:delivery_app_customer/screens/user/user_sign_in.dart';
 import 'package:delivery_app_customer/screens/user/user_sign_up.dart';
@@ -24,7 +24,7 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Delivery App Customer',
+      title: 'Delivery Cliente',
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
       ),
@@ -35,7 +35,7 @@ class Main extends StatelessWidget {
         UserSignIn.routeName: (context) => const UserSignIn(),
         UserSignInEmail.routeName: (context) => const UserSignInEmail(),
         UserSignUp.routeName: (context) => const UserSignUp(),
-        Pagamento.routeName: (context) => const Pagamento(),
+        MinhasFormasPagamento.routeName: (context) => const MinhasFormasPagamento(),
         CartScreen.routeName: (context) => const CartScreen(),
         Cartao.routeName: (context) => const Cartao(),
         Home.routeName: (context) => const Home(),

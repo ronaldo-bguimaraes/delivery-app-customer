@@ -2,16 +2,16 @@ import 'package:delivery_app_customer/screens/perfil/cartao.dart';
 import 'package:delivery_app_customer/screens/perfil/list_item.dart';
 import 'package:flutter/material.dart';
 
-class Pagamento extends StatefulWidget {
+class MinhasFormasPagamento extends StatefulWidget {
   static const String routeName = '/pagamento';
 
-  const Pagamento({Key? key}) : super(key: key);
+  const MinhasFormasPagamento({Key? key}) : super(key: key);
 
   @override
-  State<Pagamento> createState() => _PagamentoState();
+  State<MinhasFormasPagamento> createState() => _MinhasFormasPagamentoState();
 }
 
-class _PagamentoState extends State<Pagamento> {
+class _MinhasFormasPagamentoState extends State<MinhasFormasPagamento> {
   final List<ListItem> _list = [
     ListItem(
       title: 'Histórico',
