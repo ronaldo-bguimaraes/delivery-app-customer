@@ -8,4 +8,9 @@ class ServiceEnderecoAuth<T extends Endereco, U extends Usuario> extends Service
   IRepositoryEnderecoAuth<T, U> repositoryEndereco;
 
   ServiceEnderecoAuth(this.repositoryEndereco) : super(repositoryEndereco);
+
+  @override
+  Future<List<T>> getByUsuario(U usuario) async {
+    return await repositoryEndereco.getByUsuario(usuario);
+  }
 }

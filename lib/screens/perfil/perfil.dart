@@ -1,12 +1,14 @@
 import 'package:delivery_app_customer/dto/cliente.dart';
+import 'package:delivery_app_customer/dto/endereco.dart';
 import 'package:delivery_app_customer/dto/usuario.dart';
-import 'package:delivery_app_customer/screens/perfil/endereco_list.dart';
+import 'package:delivery_app_customer/screens/perfil/endereco/endereco_list.dart';
 import 'package:delivery_app_customer/screens/perfil/list_item.dart';
 import 'package:delivery_app_customer/screens/perfil/meus_dados.dart';
 import 'package:delivery_app_customer/screens/perfil/minhas_formas_pagamento.dart';
 import 'package:delivery_app_customer/screens/user/user_sign_in.dart';
 import 'package:delivery_app_customer/service/interface/i_service_auth.dart';
 import 'package:delivery_app_customer/service/interface/i_service_cliente_auth.dart';
+import 'package:delivery_app_customer/service/interface/i_service_endereco_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -33,6 +35,7 @@ class _PerfilState extends State<Perfil> {
           throw Exception('Cliente não encontrado');
         }
         cliente.usuario = usuario;
+        //
         Navigator.of(context).push(
           MaterialPageRoute(builder: (context) {
             return MeusDados(cliente: cliente);
@@ -57,12 +60,12 @@ class _PerfilState extends State<Perfil> {
         if (usuario == null) {
           throw Exception('Usuário não está logado');
         }
-        // busca de endereços não está funcionando
-        // final enderecoRepository = EnderecoFirebaseRepository();
-        // List<Endereco> enderecos = await enderecoRepository.getByUsuarioId(usuario.id!);
+        //
+        List<Endereco> enderecos = await context.read<IServiceEnderecoAuth>().getByUsuario(usuario);
+        //
         Navigator.of(context).push(
           MaterialPageRoute(builder: (context) {
-            return EnderecoList(usuario: usuario, enderecos: const []);
+            return EnderecoList(usuario: usuario, enderecos: enderecos);
           }),
         );
       },

@@ -24,7 +24,7 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Delivery App Customer',
+      title: 'Delivery Cliente',
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
       ),

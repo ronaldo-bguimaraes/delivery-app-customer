@@ -1,4 +1,5 @@
 import 'package:delivery_app_customer/dto/inteface/i_entity.dart';
+import 'package:delivery_app_customer/dto/usuario.dart';
 
 class Endereco extends IEntity {
   @override
@@ -9,7 +10,7 @@ class Endereco extends IEntity {
   String descricao;
   double latitude;
   double longitude;
-  int usuarioId;
+  Usuario usuario;
 
   Endereco({
     this.id = 0,
@@ -19,6 +20,6 @@ class Endereco extends IEntity {
     this.descricao = '',
     this.latitude = 0,
     this.longitude = 0,
-    this.usuarioId = 0,
-  });
+    Usuario? usuario,
+  }) : usuario = usuario ?? Usuario();
 }
