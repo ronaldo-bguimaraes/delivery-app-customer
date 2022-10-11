@@ -1,26 +1,39 @@
 import 'package:delivery_app_customer/mapper/interface/i_mapper_cliente.dart';
 import 'package:delivery_app_customer/mapper/interface/i_mapper_endereco.dart';
+import 'package:delivery_app_customer/mapper/interface/i_mapper_fornecedor.dart';
+import 'package:delivery_app_customer/mapper/interface/i_mapper_item_produto.dart';
 import 'package:delivery_app_customer/mapper/interface/i_mapper_produto.dart';
 import 'package:delivery_app_customer/mapper/interface/i_mapper_usuario.dart';
+import 'package:delivery_app_customer/mapper/interface/i_mapper_venda.dart';
 import 'package:delivery_app_customer/mapper/mapper_cliente.dart';
 import 'package:delivery_app_customer/mapper/mapper_endereco.dart';
+import 'package:delivery_app_customer/mapper/mapper_fornecedor.dart';
+import 'package:delivery_app_customer/mapper/mapper_item_produto.dart';
 import 'package:delivery_app_customer/mapper/mapper_produto.dart';
 import 'package:delivery_app_customer/mapper/mapper_usuario.dart';
+import 'package:delivery_app_customer/mapper/mapper_venda.dart';
 import 'package:delivery_app_customer/repository/interface/i_repository_cliente_auth.dart';
 import 'package:delivery_app_customer/repository/interface/i_repository_endereco_auth.dart';
+import 'package:delivery_app_customer/repository/interface/i_repository_fornecedor_auth.dart';
+import 'package:delivery_app_customer/repository/interface/i_repository_item_produto_auth.dart';
 import 'package:delivery_app_customer/repository/interface/i_repository_produto_auth.dart';
 import 'package:delivery_app_customer/repository/interface/i_repository_usuario_auth.dart';
 import 'package:delivery_app_customer/repository/interface/i_repository_usuario_anon.dart';
+import 'package:delivery_app_customer/repository/interface/i_repository_venda_auth.dart';
 import 'package:delivery_app_customer/repository/repository_cliente_auth.dart';
 import 'package:delivery_app_customer/repository/repository_endereco_auth.dart';
+import 'package:delivery_app_customer/repository/repository_fornecedor_auth.dart';
+import 'package:delivery_app_customer/repository/repository_item_produto_auth.dart';
 import 'package:delivery_app_customer/repository/repository_produto_auth.dart';
 import 'package:delivery_app_customer/repository/repository_usuario_auth.dart';
 import 'package:delivery_app_customer/repository/repository_usuario_anon.dart';
+import 'package:delivery_app_customer/repository/repository_venda_auth.dart';
 import 'package:delivery_app_customer/service/interface/i_service_auth.dart';
 import 'package:delivery_app_customer/service/interface/i_service_cart.dart';
 import 'package:delivery_app_customer/service/interface/i_service_cliente_auth.dart';
 import 'package:delivery_app_customer/config/interface/i_config.dart';
 import 'package:delivery_app_customer/service/interface/i_service_endereco_auth.dart';
+import 'package:delivery_app_customer/service/interface/i_service_fornecedor_auth.dart';
 import 'package:delivery_app_customer/service/interface/i_service_produto_auth.dart';
 import 'package:delivery_app_customer/service/interface/i_service_usuario_auth.dart';
 import 'package:delivery_app_customer/service/interface/i_service_usuario_anon.dart';
@@ -29,6 +42,7 @@ import 'package:delivery_app_customer/service/service_cart.dart';
 import 'package:delivery_app_customer/service/service_cliente_auth.dart';
 import 'package:delivery_app_customer/config/config.dart';
 import 'package:delivery_app_customer/service/service_endereco_auth.dart';
+import 'package:delivery_app_customer/service/service_fornecedor_auth.dart';
 import 'package:delivery_app_customer/service/service_produto_auth.dart';
 import 'package:delivery_app_customer/service/service_usuario_auth.dart';
 import 'package:delivery_app_customer/service/service_usuario_anon.dart';
@@ -60,8 +74,22 @@ class ProviderDependencies extends StatelessWidget {
           create: (ctx) => MapperEndereco(),
           lazy: true,
         ),
+        Provider<IMapperFornecedor>(
+          create: (ctx) => MapperFornecedor(),
+          lazy: true,
+        ),
         Provider<IMapperProduto>(
           create: (ctx) => MapperProduto(),
+          lazy: true,
+        ),
+        Provider<IMapperItemProduto>(
+          create: (ctx) => MapperItemProduto(),
+          lazy: true,
+        ),
+        Provider<IMapperVenda>(
+          create: (ctx) => MapperVenda(
+            ctx.read<IMapperItemProduto>(),
+          ),
           lazy: true,
         ),
         Provider<IConfig>(
@@ -105,11 +133,35 @@ class ProviderDependencies extends StatelessWidget {
           ),
           lazy: true,
         ),
+        Provider<IRepositoryFornecedorAuth>(
+          create: (ctx) => RepositoryFornecedorAuth(
+            ctx.read<IConfig>(),
+            ctx.read<IServiceAuth>(),
+            ctx.read<IMapperFornecedor>(),
+          ),
+          lazy: true,
+        ),
         Provider<IRepositoryProdutoAuth>(
           create: (ctx) => RepositoryProdutoAuth(
             ctx.read<IConfig>(),
             ctx.read<IServiceAuth>(),
             ctx.read<IMapperProduto>(),
+          ),
+          lazy: true,
+        ),
+        Provider<IRepositoryItemProdutoAuth>(
+          create: (ctx) => RepositoryItemProdutoAuth(
+            ctx.read<IConfig>(),
+            ctx.read<IServiceAuth>(),
+            ctx.read<IMapperItemProduto>(),
+          ),
+          lazy: true,
+        ),
+        Provider<IRepositoryVendaAuth>(
+          create: (ctx) => RepositoryVendaAuth(
+            ctx.read<IConfig>(),
+            ctx.read<IServiceAuth>(),
+            ctx.read<IMapperVenda>(),
           ),
           lazy: true,
         ),
@@ -137,9 +189,16 @@ class ProviderDependencies extends StatelessWidget {
           ),
           lazy: true,
         ),
+        Provider<IServiceFornecedorAuth>(
+          create: (ctx) => ServiceFornecedorAuth(
+            ctx.read<IRepositoryFornecedorAuth>(),
+          ),
+          lazy: true,
+        ),
         Provider<IServiceProdutoAuth>(
           create: (ctx) => ServiceProdutoAuth(
             ctx.read<IRepositoryProdutoAuth>(),
+            ctx.read<IServiceFornecedorAuth>(),
           ),
           lazy: true,
         ),

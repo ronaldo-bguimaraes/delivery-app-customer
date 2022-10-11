@@ -18,7 +18,7 @@ class _ProdutoListState extends State<ProdutoList> {
   @override
   Widget build(BuildContext ctx) {
     return FutureSnapshotBuilder<List<Produto>>(
-      future: ctx.read<IServiceProdutoAuth>().all(),
+      future: ctx.read<IServiceProdutoAuth>().allWithFornecedores(),
       showChild: (produtos) {
         return produtos != null && produtos.isNotEmpty;
       },

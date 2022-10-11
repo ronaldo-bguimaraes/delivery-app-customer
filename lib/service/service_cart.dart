@@ -1,8 +1,12 @@
+import 'package:delivery_app_customer/dto/fornecedor.dart';
 import 'package:delivery_app_customer/dto/item_produto.dart';
 import 'package:delivery_app_customer/service/interface/i_service_cart.dart';
 import 'package:flutter/material.dart';
 
 class ServiceCart extends ChangeNotifier implements IServiceCart {
+  @override
+  Fornecedor? defaultFornecedor;
+
   @override
   final List<ItemProduto> itensProduto = [];
 
@@ -13,6 +17,7 @@ class ServiceCart extends ChangeNotifier implements IServiceCart {
     }
     //
     catch (e) {
+      defaultFornecedor = itemProduto.produto.fornecedor;
       itensProduto.add(itemProduto);
     }
     notifyListeners();
