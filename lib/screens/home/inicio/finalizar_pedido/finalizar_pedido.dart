@@ -23,7 +23,7 @@ class _FinalizarPedidoState extends State<FinalizarPedido> {
         body: Consumer<IServiceCart>(
           builder: (context, cart, child) {
             final FinalizarPedidoItem item = FinalizarPedidoItem(
-              title: 'CJ Lanches',
+              title: cart.defaultFornecedor?.razaoSocial ?? '',
               image: const AssetImage('./assets/images/user.png'),
               event: (context) {
                 //

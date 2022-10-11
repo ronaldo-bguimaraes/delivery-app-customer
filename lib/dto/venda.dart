@@ -1,4 +1,5 @@
 import 'package:delivery_app_customer/dto/cliente.dart';
+import 'package:delivery_app_customer/dto/endereco.dart';
 import 'package:delivery_app_customer/dto/entregador.dart';
 import 'package:delivery_app_customer/dto/inteface/i_entity.dart';
 import 'package:delivery_app_customer/dto/item_produto.dart';
@@ -19,6 +20,7 @@ class Venda extends IEntity {
   Cliente cliente;
   Entregador entregador;
   Pagamento pagamento;
+  Endereco endereco;
 
   Venda({
     this.id = 0,
@@ -33,11 +35,13 @@ class Venda extends IEntity {
     Cliente? cliente,
     Entregador? entregador,
     Pagamento? pagamento,
+    Endereco? endereco,
   })  : dataVenda = dataVenda ?? DateTime.now(),
         itensProduto = [],
         cliente = Cliente(),
         entregador = Entregador(),
-        pagamento = Pagamento();
+        pagamento = Pagamento(),
+        endereco = Endereco();
 
   factory Venda.fromItensProduto(List<ItemProduto> itensProduto) {
     return Venda(
