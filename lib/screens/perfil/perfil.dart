@@ -1,6 +1,7 @@
 import 'package:delivery_app_customer/dto/cliente.dart';
 import 'package:delivery_app_customer/dto/endereco.dart';
 import 'package:delivery_app_customer/dto/usuario.dart';
+import 'package:delivery_app_customer/screens/helper/get_cliente.dart';
 import 'package:delivery_app_customer/screens/perfil/endereco/endereco_list.dart';
 import 'package:delivery_app_customer/screens/perfil/list_item.dart';
 import 'package:delivery_app_customer/screens/perfil/meus_dados.dart';
@@ -26,16 +27,7 @@ class _PerfilState extends State<Perfil> {
       subTitle: 'Dados da minha conta',
       icon: Icons.description,
       event: (context) async {
-        final Usuario? usuario = context.read<IServiceAuth>().currentUser;
-        if (usuario == null) {
-          throw Exception('Usuário não está logado');
-        }
-        Cliente? cliente = await context.read<IServiceClienteAuth>().getByUsuario(usuario);
-        if (cliente == null) {
-          throw Exception('Cliente não encontrado');
-        }
-        cliente.usuario = usuario;
-        //
+        Cliente cliente = await getCurrentCliente(context);
         Navigator.of(context).push(
           MaterialPageRoute(builder: (context) {
             return MeusDados(cliente: cliente);

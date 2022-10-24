@@ -17,10 +17,10 @@ class MapperItemProduto implements IMapperItemProduto {
   ItemProduto fromMap(Map<String, dynamic> map) {
     return ItemProduto(
       id: map['id'].toInt(),
-      valor: map['descricao'],
-      quantidade: map['valor'].toDouble(),
+      valor: map['valor'].toDouble(),
+      quantidade: map['quantidade'].toInt(),
       produto: Produto(
-        id: map['produtoId'].toInt(),
+        id: map['produtoId']?.toInt() ?? 0,
       ),
     );
   }
