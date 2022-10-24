@@ -1,4 +1,4 @@
-import 'package:delivery_app_customer/mapper/interface/i_mapper_cliente.dart';
+import '../mapper/interface/i_mapper_cliente.dart';
 import 'package:delivery_app_customer/mapper/interface/i_mapper_endereco.dart';
 import 'package:delivery_app_customer/mapper/interface/i_mapper_fornecedor.dart';
 import 'package:delivery_app_customer/mapper/interface/i_mapper_item_produto.dart';
@@ -210,7 +210,8 @@ class ProviderDependencies extends StatelessWidget {
         ),
         Provider<IServiceVendaAuth>(
           create: (ctx) => ServiceVendaAuth(
-            ctx.read<IRepositoryVendaAuth>()
+            ctx.read<IRepositoryVendaAuth>(),
+            ctx.read<IServiceProdutoAuth>(),
           ),
           lazy: true,
         ),

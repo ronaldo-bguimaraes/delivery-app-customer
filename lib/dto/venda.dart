@@ -9,12 +9,11 @@ import 'package:delivery_app_customer/enums/condicao_venda.dart';
 class Venda extends IEntity {
   @override
   int id;
-  double subTotal;
+  double subtotal;
   double frete;
   double total;
   DateTime dataVenda;
   double desconto;
-  double valor;
   CondicaoVenda condicao;
   List<ItemProduto> itensProduto;
   Cliente cliente;
@@ -24,12 +23,11 @@ class Venda extends IEntity {
 
   Venda({
     this.id = 0,
-    this.subTotal = 0,
+    this.subtotal = 0,
     this.frete = 0,
     this.total = 0,
     DateTime? dataVenda,
     this.desconto = 0,
-    this.valor = 0,
     this.condicao = CondicaoVenda.solicitada,
     List<ItemProduto>? itensProduto,
     Cliente? cliente,
