@@ -18,15 +18,15 @@ class MapperVenda implements IMapperVenda {
       'subTotal': venda.subTotal.toDouble(),
       'frete': venda.frete.toDouble(),
       'total': venda.total.toDouble(),
-      'dataVenda': venda.dataVenda.toIso8601String(),
+      'dataVenda': venda.dataVenda.toUtc().toIso8601String(),
       'desconto': venda.desconto.toDouble(),
       'valor': venda.valor.toDouble(),
       'condicao': venda.condicao.value,
       'itensProduto': venda.itensProduto.map(mapperItemProduto.toMap).toList(),
       'clienteId': venda.cliente.id.toInt(),
-      'entregadorId': venda.entregador.id.toInt(),
-      'pagamentoId': venda.pagamento.id.toInt(),
-      'enderecoId': venda.pagamento.id.toInt()
+      'entregadorId': venda.entregador?.id.toInt(),
+      'pagamentoId': venda.pagamento?.id.toInt(),
+      'enderecoId': venda.pagamento?.id.toInt()
     };
   }
 
@@ -37,7 +37,7 @@ class MapperVenda implements IMapperVenda {
       subTotal: map['subTotal'].toDouble(),
       frete: map['frete'].toDouble(),
       total: map['total'].toDouble(),
-      dataVenda: map['dataVenda'].toIso8601String(),
+      dataVenda: DateTime.parse(map['dataVenda']).toLocal(),
       desconto: map['desconto'].toDouble(),
       valor: map['valor'].toDouble(),
       condicao: map['condicao'].value,
@@ -46,13 +46,13 @@ class MapperVenda implements IMapperVenda {
         id: map['clienteId'].toInt(),
       ),
       entregador: Entregador(
-        id: map['entregadorId'].toInt(),
+        id: map['entregadorId']?.toInt(),
       ),
       pagamento: Pagamento(
-        id: map['pagamentoId'].toInt(),
+        id: map['pagamentoId']?.toInt(),
       ),
       endereco: Endereco(
-        id: map['pagamentoId'].toInt(),
+        id: map['pagamentoId']?.toInt(),
       ),
     );
   }

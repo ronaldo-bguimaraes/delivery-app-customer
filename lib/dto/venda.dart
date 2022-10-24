@@ -18,9 +18,9 @@ class Venda extends IEntity {
   CondicaoVenda condicao;
   List<ItemProduto> itensProduto;
   Cliente cliente;
-  Entregador entregador;
-  Pagamento pagamento;
-  Endereco endereco;
+  Entregador? entregador;
+  Pagamento? pagamento;
+  Endereco? endereco;
 
   Venda({
     this.id = 0,
@@ -33,18 +33,16 @@ class Venda extends IEntity {
     this.condicao = CondicaoVenda.solicitada,
     List<ItemProduto>? itensProduto,
     Cliente? cliente,
-    Entregador? entregador,
-    Pagamento? pagamento,
-    Endereco? endereco,
+    this.entregador,
+    this.pagamento,
+    this.endereco,
   })  : dataVenda = dataVenda ?? DateTime.now(),
-        itensProduto = [],
-        cliente = Cliente(),
-        entregador = Entregador(),
-        pagamento = Pagamento(),
-        endereco = Endereco();
+        itensProduto = itensProduto ?? [],
+        cliente = cliente ?? Cliente();
 
-  factory Venda.fromItensProduto(List<ItemProduto> itensProduto) {
+  factory Venda.fromItensProduto(Cliente cliente, List<ItemProduto> itensProduto) {
     return Venda(
+      cliente: cliente,
       itensProduto: itensProduto,
     );
   }

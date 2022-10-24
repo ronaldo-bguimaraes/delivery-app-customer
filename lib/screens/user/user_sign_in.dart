@@ -65,7 +65,8 @@ class _UserSignInState extends State<UserSignIn> {
                     TextFormField(
                       initialValue: _usuario.telefone,
                       onSaved: (value) {
-                        _usuario.telefone = value!.replaceAll(RegExp(r'\D'), '');
+                        _usuario.telefone =
+                            value!.replaceAll(RegExp(r'\D'), '');
                       },
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
@@ -75,6 +76,7 @@ class _UserSignInState extends State<UserSignIn> {
                         _phoneMask,
                       ],
                       keyboardType: TextInputType.phone,
+                      onFieldSubmitted: (value) => _signIn(),
                     ),
                     const SizedBox(
                       height: 15,
@@ -89,6 +91,7 @@ class _UserSignInState extends State<UserSignIn> {
                         labelText: 'Senha',
                       ),
                       obscureText: true,
+                      onFieldSubmitted: (value) => _signIn(),
                     ),
                     const SizedBox(
                       height: 15,
@@ -100,47 +103,7 @@ class _UserSignInState extends State<UserSignIn> {
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.all(20),
                       ),
-                      onPressed: () async {
-                        var state = _formKey.currentState;
-                        if (state != null) {
-                          state.save();
-                        }
-                        if (state != null && state.validate()) {
-                          try {
-                            _usuario = await context.read<IServiceAuth>().signIn(_usuario);
-                            Navigator.of(context).pushNamedAndRemoveUntil(
-                              Home.routeName,
-                              (route) => false,
-                            );
-                          }
-                          //
-                          catch (error) {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: const Text('Erro'),
-                                  content: SingleChildScrollView(
-                                    child: ListBody(
-                                      children: const [
-                                        Text('Telefone ou senha incorretos'),
-                                      ],
-                                    ),
-                                  ),
-                                  actions: [
-                                    TextButton(
-                                      child: const Text('Ok'),
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-                          }
-                        }
-                      },
+                      onPressed: _signIn,
                     ),
                     const SizedBox(
                       height: 10,
@@ -161,7 +124,8 @@ class _UserSignInState extends State<UserSignIn> {
                         padding: const EdgeInsets.all(15),
                       ),
                       onPressed: () {
-                        Navigator.of(context).pushNamed(UserSignInEmail.routeName);
+                        Navigator.of(context)
+                            .pushNamed(UserSignInEmail.routeName);
                       },
                     ),
                     TextButton(
@@ -185,5 +149,47 @@ class _UserSignInState extends State<UserSignIn> {
         },
       ),
     );
+  }
+
+  void _signIn() async {
+    var state = _formKey.currentState;
+    if (state != null) {
+      state.save();
+    }
+    if (state != null && state.validate()) {
+      try {
+        _usuario = await context.read<IServiceAuth>().signIn(_usuario);
+        Navigator.of(context).pushNamedAndRemoveUntil(
+          Home.routeName,
+          (route) => false,
+        );
+      }
+      //
+      catch (error) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Erro'),
+              content: SingleChildScrollView(
+                child: ListBody(
+                  children: const [
+                    Text('Telefone ou senha incorretos'),
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                  child: const Text('Ok'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      }
+    }
   }
 }

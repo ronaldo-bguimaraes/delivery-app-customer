@@ -8,7 +8,7 @@ class MapperCliente<T extends Cliente> implements IMapperCliente {
     return {
       'id': cliente.id.toInt(),
       'cpf': cliente.cpf,
-      'dataNascimento': cliente.dataNascimento.toIso8601String(),
+      'dataNascimento': cliente.dataNascimento.toUtc().toIso8601String(),
       'usuarioId': cliente.usuario.id.toInt(),
     };
   }
@@ -18,7 +18,7 @@ class MapperCliente<T extends Cliente> implements IMapperCliente {
     return Cliente(
       id: map['id']?.toInt(),
       cpf: map['cpf'],
-      dataNascimento: DateTime.parse(map['dataNascimento']),
+      dataNascimento: DateTime.parse(map['dataNascimento']).toLocal(),
       usuario: Usuario(
         id: map['usuarioId'].toInt(),
       ),

@@ -1,11 +1,18 @@
+import 'package:delivery_app_customer/dto/cliente.dart';
+import 'package:delivery_app_customer/dto/usuario.dart';
 import 'package:delivery_app_customer/dto/venda.dart';
+import 'package:delivery_app_customer/screens/home/home.dart';
 import 'package:delivery_app_customer/screens/home/inicio/finalizar_pedido/finalizar_pedido_item_list.dart';
+import 'package:delivery_app_customer/service/interface/i_service_auth.dart';
 import 'package:delivery_app_customer/service/interface/i_service_cart.dart';
+import 'package:delivery_app_customer/service/interface/i_service_cliente_auth.dart';
+import 'package:delivery_app_customer/service/interface/i_service_venda_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class FinalizarPedido extends StatefulWidget {
   static const String routeName = '/finalizar-pedido';
+
   const FinalizarPedido({Key? key}) : super(key: key);
 
   @override
@@ -23,7 +30,7 @@ class _FinalizarPedidoState extends State<FinalizarPedido> {
         body: Consumer<IServiceCart>(
           builder: (context, cart, child) {
             final FinalizarPedidoItem item = FinalizarPedidoItem(
-              title: cart.defaultFornecedor?.razaoSocial ?? '',
+              title: cart.defaultFornecedor?.razaoSocial ?? 'Fornecedor Mocado',
               image: const AssetImage('./assets/images/user.png'),
               event: (context) {
                 //
@@ -269,11 +276,7 @@ class _FinalizarPedidoState extends State<FinalizarPedido> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                onPressed: () {
-                  //
-                  final venda = Venda.fromItensProduto(cart.itensProduto);
-                  print(venda);
-                },
+                onPressed: () => _saveVenda(),
                 child: Text("Finalizar Pedido (R\$ ${cart.totalCart().toStringAsFixed(2)})"),
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.all(20),
@@ -284,5 +287,57 @@ class _FinalizarPedidoState extends State<FinalizarPedido> {
         ),
       );
     });
+  }
+
+  _openHome() {
+    Navigator.of(context).pushNamedAndRemoveUntil(
+      Home.routeName,
+      (route) => false,
+    );
+  }
+
+  _saveVenda() async {
+    try {
+      final cart = context.read<IServiceCart>();
+      final Usuario? usuario = context.read<IServiceAuth>().currentUser;
+      if (usuario == null) {
+        throw Exception('Usuário não está logado');
+      }
+      Cliente? cliente = await context.read<IServiceClienteAuth>().getByUsuario(usuario);
+      if (cliente == null) {
+        throw Exception('Cliente não encontrado');
+      }
+      cliente.usuario = usuario;
+      final venda = Venda.fromItensProduto(cliente, cart.itensProduto);
+      await context.read<IServiceVendaAuth>().save(venda);
+      cart.limpaCarrinho();
+      _openHome();
+    }
+    //
+    catch (error) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Erro'),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: const [
+                  Text('Erro ao salvar pedido'),
+                ],
+              ),
+            ),
+            actions: [
+              TextButton(
+                child: const Text('Ok'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 }

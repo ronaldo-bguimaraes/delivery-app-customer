@@ -96,47 +96,7 @@ class _UserSignInEmailState extends State<UserSignInEmail> {
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.all(20),
                   ),
-                  onPressed: () async {
-                    var state = _formKey.currentState;
-                    if (state != null) {
-                      state.save();
-                    }
-                    if (state != null && state.validate()) {
-                      try {
-                        _usuario = await context.read<IServiceAuth>().signIn(_usuario);
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                          Home.routeName,
-                          (route) => false,
-                        );
-                      }
-                      //
-                      catch (error) {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: const Text('Erro'),
-                              content: SingleChildScrollView(
-                                child: ListBody(
-                                  children: const [
-                                    Text('Email ou senha incorretos'),
-                                  ],
-                                ),
-                              ),
-                              actions: [
-                                TextButton(
-                                  child: const Text('Ok'),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      }
-                    }
-                  },
+                  onPressed: _signIn,
                 ),
                 const SizedBox(
                   height: 15,
@@ -160,5 +120,47 @@ class _UserSignInEmailState extends State<UserSignInEmail> {
         ),
       ),
     );
+  }
+
+  void _signIn() async {
+    var state = _formKey.currentState;
+    if (state != null) {
+      state.save();
+    }
+    if (state != null && state.validate()) {
+      try {
+        _usuario = await context.read<IServiceAuth>().signIn(_usuario);
+        Navigator.of(context).pushNamedAndRemoveUntil(
+          Home.routeName,
+          (route) => false,
+        );
+      }
+      //
+      catch (error) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Erro'),
+              content: SingleChildScrollView(
+                child: ListBody(
+                  children: const [
+                    Text('Email ou senha incorretos'),
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                  child: const Text('Ok'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      }
+    }
   }
 }

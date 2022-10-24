@@ -17,7 +17,7 @@ class RepositoryVendaAuth<T extends Venda, U extends Usuario> extends Repository
   IMapper<T> mapper;
 
   @override
-  String subPath = 'venda';
+  String subPath = 'vendas';
 
   RepositoryVendaAuth(this.config, this.auth, this.mapper);
 }
