@@ -10,7 +10,7 @@ class MapperUsuario implements IMapperUsuario {
       'telefone': usuario.telefone,
       'email': usuario.email,
       'senha': usuario.senha,
-      'dataCadastro': usuario.dataCadastro.toIso8601String(),
+      'dataCadastro': usuario.dataCadastro.toUtc().toIso8601String(),
       'token': usuario.token,
     };
   }
@@ -22,7 +22,7 @@ class MapperUsuario implements IMapperUsuario {
       nome: map['nome'],
       telefone: map['telefone'],
       email: map['email'],
-      dataCadastro: DateTime.parse(map['dataCadastro']),
+      dataCadastro: DateTime.parse(map['dataCadastro']).toLocal(),
       token: map['token'],
     );
   }

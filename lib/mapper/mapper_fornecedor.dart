@@ -1,7 +1,5 @@
 import 'package:delivery_app_customer/dto/fornecedor.dart';
-import 'package:delivery_app_customer/dto/produto.dart';
 import 'package:delivery_app_customer/dto/usuario.dart';
-import 'package:delivery_app_customer/mapper/interface/i_mapper_produto.dart';
 
 import 'interface/i_mapper_fornecedor.dart';
 

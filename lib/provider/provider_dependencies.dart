@@ -37,6 +37,7 @@ import 'package:delivery_app_customer/service/interface/i_service_fornecedor_aut
 import 'package:delivery_app_customer/service/interface/i_service_produto_auth.dart';
 import 'package:delivery_app_customer/service/interface/i_service_usuario_auth.dart';
 import 'package:delivery_app_customer/service/interface/i_service_usuario_anon.dart';
+import 'package:delivery_app_customer/service/interface/i_service_venda_auth.dart';
 import 'package:delivery_app_customer/service/service_auth.dart';
 import 'package:delivery_app_customer/service/service_cart.dart';
 import 'package:delivery_app_customer/service/service_cliente_auth.dart';
@@ -46,6 +47,7 @@ import 'package:delivery_app_customer/service/service_fornecedor_auth.dart';
 import 'package:delivery_app_customer/service/service_produto_auth.dart';
 import 'package:delivery_app_customer/service/service_usuario_auth.dart';
 import 'package:delivery_app_customer/service/service_usuario_anon.dart';
+import 'package:delivery_app_customer/service/service_venda_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -204,6 +206,12 @@ class ProviderDependencies extends StatelessWidget {
         ),
         ChangeNotifierProvider<IServiceCart>(
           create: (ctx) => ServiceCart(),
+          lazy: true,
+        ),
+        Provider<IServiceVendaAuth>(
+          create: (ctx) => ServiceVendaAuth(
+            ctx.read<IRepositoryVendaAuth>()
+          ),
           lazy: true,
         ),
       ],
