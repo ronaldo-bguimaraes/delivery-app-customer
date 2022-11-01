@@ -20,7 +20,7 @@ class FornecedorItemList {
     required this.event,
   });
 
-  factory FornecedorItemList.fromForcedores(Fornecedor fornecedor) {
+  factory FornecedorItemList.fromFornecedor(Fornecedor fornecedor) {
     return FornecedorItemList(
       title: fornecedor.razaoSocial,
       categoria: 'Categoria',
