@@ -48,7 +48,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.toptag.delivery_app_customer"
+        applicationId "com.toptag.lucianos_delivery_para_clientes"
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
