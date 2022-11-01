@@ -13,7 +13,7 @@ class Inicio extends StatefulWidget {
 }
 
 class _InicioState extends State<Inicio> {
-  final List<String> _categorias = ['Produtos'];
+  final List<String> _categorias = ['Fornecedores', 'Produtos'];
 
   final List<FornecedorItemList> _todos = [
     FornecedorItemList(

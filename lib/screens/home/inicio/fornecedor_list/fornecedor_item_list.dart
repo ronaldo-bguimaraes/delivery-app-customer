@@ -1,3 +1,4 @@
+import 'package:delivery_app_customer/dto/fornecedor.dart';
 import 'package:flutter/material.dart';
 
 class FornecedorItemList {
@@ -18,4 +19,18 @@ class FornecedorItemList {
     required this.image,
     required this.event,
   });
+
+  factory FornecedorItemList.fromForcedores(Fornecedor fornecedor) {
+    return FornecedorItemList(
+      title: fornecedor.razaoSocial,
+      categoria: 'Categoria',
+      distancia: 5.5,
+      tempoEntrega: 10,
+      frete: 10,
+      image: const AssetImage('./assets/images/user.png'),
+      event: (ctx) {
+        //
+      },
+    );
+  }
 }
