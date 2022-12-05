@@ -1,7 +1,5 @@
 import 'package:delivery_app_customer/screens/home/inicio/cart/cart_button.dart';
 import 'package:delivery_app_customer/screens/home/inicio/fornecedor_list/fornecedor_list.dart';
-import 'package:delivery_app_customer/screens/home/inicio/fornecedor_list/fornecedor_item_list.dart';
-import 'package:delivery_app_customer/screens/home/inicio/produto_list/produto_item_list.dart';
 import 'package:delivery_app_customer/screens/home/inicio/produto_list/produto_list.dart';
 import 'package:flutter/material.dart';
 
@@ -25,11 +23,25 @@ class _InicioState extends State<Inicio> {
           bottom: TabBar(
             tabs: _categorias.map((e) => Tab(text: e)).toList(),
           ),
+          actions: [
+            IconButton(
+              onPressed: () {
+                setState(() {});
+              },
+              icon: const Icon(
+                Icons.refresh,
+              ),
+            ),
+          ],
         ),
-        body: const TabBarView(
+        body: TabBarView(
           children: [
-            FornecedorList(),
-            ProdutoList(),
+            Builder(builder: (context) {
+              return FornecedorList();
+            }),
+            Builder(builder: (context) {
+              return ProdutoList();
+            }),
           ],
         ),
       ),

@@ -36,6 +36,16 @@ class _PedidoListState extends State<PedidoList> {
       floatingActionButton: const CartButton(),
       appBar: AppBar(
         title: const Text('Meus Pedidos'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              setState(() {});
+            },
+            icon: const Icon(
+              Icons.refresh,
+            ),
+          ),
+        ],
       ),
       body: FutureSnapshotBuilder<List<Venda>>(
         future: getVendaList(),
